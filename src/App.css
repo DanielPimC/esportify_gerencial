@@ -1,0 +1,72 @@
+.menu {
+  background: linear-gradient(to bottom, black, white);
+  width: 200px;
+  height: 100vh;
+  float: left;
+}
+
+.menu ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.menu li {
+  padding: 15px;
+  color: white;
+  cursor: pointer;
+}
+
+.menu li:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.content {
+  float: left;
+  padding: 20px;
+}
+
+button {
+  margin-bottom: 20px;
+}
+
+.quadras-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.quadra {
+  border: 1px solid #ccc;
+  padding: 20px;
+  text-align: center;
+}
+
+.btn-add-quadra {
+  background-color: #838383;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+  text-align: center;
+
+  .plus {
+    font-size: 60px;
+    line-height: 1;
+    margin: 0;
+  }
+
+  &:hover {
+    background-color: #6d6d6d;
+  }
+}
+
+
