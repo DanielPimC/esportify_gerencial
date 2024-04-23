@@ -1,10 +1,25 @@
-import React, { useState } from 'react';
-import { Route, Routes, Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Route, Routes, Link, useNavigate } from 'react-router-dom';
 import Quadra from './Quadra';
 import CriarQuadra from './CriarQuadra';
+import axios from 'axios';
 
 function GerenciarQuadras() {
   const [quadras, setQuadras] = useState([]);
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    const fetchQuadras = async () => {
+      try {
+        const response = await axios.get('http://localhost:4000/quadras');
+        setQuadras(response.data);
+      } catch (error) {
+        console.error('Erro ao buscar quadras:', error);
+      }
+    };
+
+    fetchQuadras();
+  }, []);
 
   const adicionarQuadra = (novaQuadra) => {
     setQuadras([...quadras, novaQuadra]);
@@ -25,24 +40,27 @@ function GerenciarQuadras() {
   };
 
   return (
-    <div>
+    <div className="container">
       <div className="menu">
         <ul>
-          <li>Gerenciar Quadras</li>
-          <li>Gerenciar Horários</li>
+          <li onClick={() => navigate('/gerenciar-quadras')}>Gerenciar Quadras</li>
+          <li onClick={() => navigate('/listar-agendamentos')}>Listar Agendamentos</li>
         </ul>
       </div>
       <div className="content">
-        <Link to="/criar-quadra" className="btn-add-quadra">
-          <span className="plus">+</span>
-          <br />
-          Adicionar quadra
-        </Link>
-        {renderizarQuadras()}
+        <div className="button-container">
+          <Link to="/criar-quadra" className="btn-add-quadra">
+            <span className="plus">+</span>
+            <br />
+            Adicionar quadra
+          </Link>
+        </div>
+        <div className="quadras-container">
+          {renderizarQuadras()}
+        </div>
       </div>
-
       <Routes>
-        <Route path="/criar-quadra" element={<CriarQuadra onSubmitQuadra={adicionarQuadra} />} />
+        <Route path="/criar-quadra" element={<CriarQuadra onAddQuadra={adicionarQuadra} />} />
       </Routes>
     </div>
   );

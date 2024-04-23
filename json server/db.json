@@ -1,0 +1,45 @@
+{
+  "quadras": [
+    {
+      "id": "1",
+      "nome": "Nekebe",
+      "rua": "Rua irineu",
+      "numero": "123",
+      "bairro": "sei lá",
+      "cidade": "Muriaé",
+      "dias": {
+        "seg": [
+          "08:00 - 10:00",
+          "14:00 - 16:00"
+        ]
+      },
+      "ter": [
+        "08:00 - 09:00"
+      ]
+    },
+    {
+      "id": 1713903378133,
+      "nome": "Harpa.AI Arena",
+      "rua": "Rua",
+      "numero": "Número",
+      "bairro": "Bairro",
+      "cidade": "Muriaé"
+    },
+    {
+      "id": 1713903387153,
+      "nome": "Harpa.AI Arena",
+      "rua": "Rua",
+      "numero": "Número",
+      "bairro": "Bairro",
+      "cidade": "Muriaé"
+    },
+    {
+      "id": 1713903510057,
+      "nome": "Não quero!!!!!",
+      "rua": "Sei lá",
+      "numero": "24",
+      "bairro": "Não!!",
+      "cidade": "Mumu City"
+    }
+  ]
+}
