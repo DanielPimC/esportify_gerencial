@@ -172,8 +172,10 @@
 .horarios-list {
   background-color: #ffffff;
   border-radius: 8px;
-  padding: 10px;
-  width: 100%;
+  padding: 10px 15px;
+  width: 90%;
+  justify-content: space-between;
+  border: 1px solid black;
 }
 
 .dia-details {
@@ -183,7 +185,7 @@
   padding: 10px;
   border-radius: 8px;
   cursor: pointer;
-  overflow: hidden; /* Adicionado overflow para conter .horarios-list */
+  overflow: hidden;
 }
 
 .dia-summary {
@@ -196,6 +198,8 @@
   display: flex;
   justify-content: space-between;
   margin-top: 10px;
+  border: 1px solid black;
+  border-radius: 8px;
 }
 
 .horario-card p {
@@ -206,21 +210,6 @@
   margin-top: 10px;
   width: 100%;
   text-align: center;
-}
-
-.sem-horarios button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-top: 10px;
-}
-
-.sem-horarios button:hover {
-  background-color: #0056b3;
 }
 
 @media (min-width: 768px) {

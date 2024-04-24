@@ -10,11 +10,11 @@ function AdicionarHorarioModal({ onClose, onAddHorario, idQuadra, dia }) {
 
     const novoHorario = {
       id: Date.now(),
-      idQuadra,
       dia,
       horarioInicio,
       horarioFim,
-      valor
+      valor,
+      disponivel: "sim"
     };
 
     onAddHorario(novoHorario);
