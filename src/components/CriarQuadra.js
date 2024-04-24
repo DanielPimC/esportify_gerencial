@@ -4,10 +4,12 @@ import axios from 'axios';
 
 function CriarQuadra() {
   const [nome, setNome] = useState('');
+  const [locatario, setLocatario] = useState('');
   const [rua, setRua] = useState('');
   const [numero, setNumero] = useState('');
   const [bairro, setBairro] = useState('');
   const [cidade, setCidade] = useState('');
+  const [cep, setCEP] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -19,11 +21,15 @@ function CriarQuadra() {
       rua,
       numero,
       bairro,
-      cidade
+      cidade,
+      cep,
+      locatario
     };
 
+    const link = 'http://localhost:4000/quadras'
     try {
-      const response = await axios.post('http://localhost:4000/quadras', novaQuadra);
+      console.log(novaQuadra)
+      const response = await axios.post(link, novaQuadra);
       console.log(response.data);
       navigate('/');
     } catch (error) {
@@ -44,6 +50,14 @@ function CriarQuadra() {
             placeholder='Digite aqui...'
             required
           />
+          <label>Nome do Locatário:</label>
+          <input
+            type="text"
+            value={locatario}
+            onChange={(e) => setLocatario(e.target.value)}
+            placeholder='Digite aqui...'
+            required
+          />
         </div>
         <div className="input-group">
           <label>Endereço:</label>
@@ -56,7 +70,8 @@ function CriarQuadra() {
               required
             />
             <input
-              type="text"
+              type="number"
+              min={0}
               value={numero}
               onChange={(e) => setNumero(e.target.value)}
               placeholder='Número'
@@ -74,6 +89,13 @@ function CriarQuadra() {
               value={cidade}
               onChange={(e) => setCidade(e.target.value)}
               placeholder='Cidade'
+              required
+            />
+            <input
+              type="text"
+              value={cep}
+              onChange={(e) => setCEP(e.target.value)}
+              placeholder='CEP'
               required
             />
           </div>

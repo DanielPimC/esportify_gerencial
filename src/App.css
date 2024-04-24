@@ -4,7 +4,6 @@
   width: 100vh;
   height: 100%;
   background-color: #5f535331;
-  border: 1px solid #ccc;
   padding: 20px;
   text-align: center;
   display: flex;
@@ -147,4 +146,97 @@
 
 .btn-submit:hover {
   background-color: #0056b3;
+}
+
+
+/* CSS RELACIONADO AO BOTÃO DE GERENCIAR HORÁRIO DA QUADRA */
+.btn-show-id {
+  position: absolute;
+  right: 10px;
+  top: 0;
+  color: black;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 1.5em;
+}
+
+/* CSS RELACIONADO AO GERENCIAR HORÁRIOS */
+.horarios-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.horarios-list {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 10px;
+  width: 100%;
+}
+
+.dia-details {
+  width: 100%;
+  margin-bottom: 20px;
+  background-color: #5f535331;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  overflow: hidden; /* Adicionado overflow para conter .horarios-list */
+}
+
+.dia-summary {
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.horario-card {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.horario-card p {
+  margin: 0;
+}
+
+.sem-horarios {
+  margin-top: 10px;
+  width: 100%;
+  text-align: center;
+}
+
+.sem-horarios button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+.sem-horarios button:hover {
+  background-color: #0056b3;
+}
+
+@media (min-width: 768px) {
+  .horarios-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .dia-details {
+    flex: 0 1 calc(33.3333% - 20px); /* 3 dias por linha */
+  }
+}
+
+@media (min-width: 1024px) {
+  .dia-details {
+    flex: 0 1 calc(25% - 20px); /* 4 dias por linha */
+  }
 }

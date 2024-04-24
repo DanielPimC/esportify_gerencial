@@ -5,6 +5,7 @@ import GerenciarQuadras from './components/GerenciarQuadras';
 import CriarQuadra from './components/CriarQuadra';
 import ListarAgendamentos from './components/ListarAgendamentos'
 import NotFound from './components/NotFound'
+import GerenciarHorarios from './components/GerenciarHorarios';
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
         <Routes>
           <Route path="/" exact element={<GerenciarQuadras />} />
           <Route path="/gerenciar-quadras" element={<GerenciarQuadras />} />
+          <Route path="/gerenciar-horarios" element={<GerenciarHorarios />} />
           <Route path="/criar-quadra" element={<CriarQuadra />} />
           <Route path="/listar-agendamentos" element={<ListarAgendamentos />} />
           <Route path="*" element={<NotFound />} />
