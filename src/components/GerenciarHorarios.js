@@ -20,10 +20,10 @@ function GerenciarHorarios() {
   useEffect(() => {
     const fetchHorarios = async () => {
       try {
-        const link = `http://localhost:4000/horarios?quadraId=${idQuadra}`
+        const link = `http://localhost:3003/horarios_aluguel/${idQuadra}`
         const response = await axios.get(link);
-        setHorarios(response.data);
-        console.log(response.data)
+        setHorarios(response.data.horarios_aluguel);
+        console.log(response.data.horarios_aluguel)
       } catch (error) {
         console.error('Erro ao buscar horários:', error);
       }
@@ -52,12 +52,12 @@ function GerenciarHorarios() {
   };
 
   const renderizarHorarios = () => {
-    const diasDaSemana = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'];
+    const diasDaSemana = ['SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SAB', 'DOM'];
 
     return (
       <div className="horarios-container">
         {diasDaSemana.map((dia) => {
-          const horariosDoDia = horarios.filter((horario) => horario.dia === dia);
+          const horariosDoDia = horarios.filter((horario) => horario.dia_semana.desc_dia === dia)
           return (
             <details key={dia} className="dia-details">
               <summary className="dia-summary">{dia}</summary>
@@ -65,8 +65,8 @@ function GerenciarHorarios() {
                 {horariosDoDia.length > 0 ? (
                   horariosDoDia.map((horario) => (
                     <div key={horario.id} className="horario-card">
-                      <p>Horário Início: {horario.horarioInicio}</p>
-                      <p>Horário Fim: {horario.horarioFim}</p>
+                      <p>Horário Início: {horario.horario_inicial}</p>
+                      <p>Horário Fim: {horario.horario_final}</p>
                       <p>Valor: {horario.preco}</p>
                     </div>
                   ))

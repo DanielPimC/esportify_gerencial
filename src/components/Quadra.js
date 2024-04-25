@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
 
 function Quadra({ quadra }) {
-  const { id, nome, rua, numero, bairro, cidade, cep } = quadra;
+  const { id_quadra, nome, rua, numero, bairro, cidade, cep } = quadra;
   const navigate = useNavigate()
 
   const gerenciarQuadra = () => {
-    localStorage.setItem("idQuadra", id)
+    localStorage.setItem("idQuadra", id_quadra)
     navigate(`/gerenciar-horarios`)
   };
 
@@ -15,7 +15,7 @@ function Quadra({ quadra }) {
         …
       </button>
       <h3>{nome}</h3>
-      <p>ID {id}</p>
+      <p>ID {id_quadra}</p>
       <h5>Rua {rua}, nº {numero}, bairro {bairro}, cidade {cidade}, CEP {cep}</h5>
     </div>
   );

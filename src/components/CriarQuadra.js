@@ -16,7 +16,6 @@ function CriarQuadra() {
     e.preventDefault();
 
     const novaQuadra = {
-      id: Date.now(),
       nome,
       rua,
       numero,
@@ -26,7 +25,7 @@ function CriarQuadra() {
       locatario
     };
 
-    const link = 'http://localhost:4000/quadras'
+    const link = 'http://localhost:3003/quadra/add'
     try {
       console.log(novaQuadra)
       const response = await axios.post(link, novaQuadra);
