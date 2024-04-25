@@ -5,10 +5,10 @@ import AdicionarHorarioModal from './AdicionarHorarioModal';
 
 function GerenciarHorarios() {
     const navigate = useNavigate()
-  const [horarios, setHorarios] = useState([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [diaSelecionado, setDiaSelecionado] = useState('');
-  const idQuadra = localStorage.getItem('idQuadra');
+    const [horarios, setHorarios] = useState([]);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [diaSelecionado, setDiaSelecionado] = useState('');
+    const idQuadra = localStorage.getItem('idQuadra');
 
     useEffect(() => {
         if(!idQuadra){
@@ -20,14 +20,16 @@ function GerenciarHorarios() {
   useEffect(() => {
     const fetchHorarios = async () => {
       try {
-        const response = await axios.get(`http://localhost:4000/horarios?idQuadra=${idQuadra}`);
+        const link = `http://localhost:4000/horarios?quadraId=${idQuadra}`
+        const response = await axios.get(link);
         setHorarios(response.data);
+        console.log(response.data)
       } catch (error) {
         console.error('Erro ao buscar horários:', error);
       }
     };
 
-    if (idQuadra) { // Adicionado um check para garantir que idQuadra existe antes de fazer a chamada
+    if (idQuadra) {
       fetchHorarios();
     }
   }, [idQuadra]);
@@ -39,8 +41,10 @@ function GerenciarHorarios() {
 
   const adicionarHorario = async (horario) => {
     try {
-      await axios.post('http://localhost:4000/horarios', { ...horario, quadraId: idQuadra });
-      const response = await axios.get(`http://localhost:4000/horarios?quadraId=${idQuadra}`);
+      const linkGet = `http://localhost:4000/horarios?quadraId=${idQuadra}`
+      const linkPost = `http://localhost:4000/horarios`
+      await axios.post(linkPost, { ...horario, quadraId: idQuadra });
+      const response = await axios.get(linkGet);
       setHorarios(response.data);
     } catch (error) {
       console.error('Erro ao adicionar horário:', error);
@@ -63,12 +67,12 @@ function GerenciarHorarios() {
                     <div key={horario.id} className="horario-card">
                       <p>Horário Início: {horario.horarioInicio}</p>
                       <p>Horário Fim: {horario.horarioFim}</p>
-                      <p>Valor: {horario.valor}</p>
+                      <p>Valor: {horario.preco}</p>
                     </div>
                   ))
                 ) : (
                   <div className="sem-horarios">
-                    <p>Sem horários definidos</p>
+                    <p>Sem horários definidos.</p>
                   </div>
                 )}
                 <button onClick={() => toggleModal(dia)}>Adicionar Horário</button>
@@ -82,7 +86,7 @@ function GerenciarHorarios() {
 
   return (
     <div className="horarios-container">
-      <h2>{`Gerenciar Horário - Quadra ${idQuadra}`}</h2>
+      <h2 className='gerenciar-horario'>{`Gerenciar Horário - Quadra ${idQuadra}`}</h2>
       {renderizarHorarios()}
       {isModalOpen && (
         <AdicionarHorarioModal 

@@ -11,7 +11,8 @@ function GerenciarQuadras() {
   useEffect(() => {
     const fetchQuadras = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/quadras');
+        const link = `http://localhost:4000/quadras`
+        const response = await axios.get(link);
         setQuadras(response.data);
       } catch (error) {
         console.error('Erro ao buscar quadras:', error);

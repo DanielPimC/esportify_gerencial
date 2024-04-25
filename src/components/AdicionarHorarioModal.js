@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
-function AdicionarHorarioModal({ onClose, onAddHorario, idQuadra, dia }) {
+function AdicionarHorarioModal({ onClose, onAddHorario, dia }) {
   const [horarioInicio, setHorarioInicio] = useState('');
   const [horarioFim, setHorarioFim] = useState('');
-  const [valor, setValor] = useState('');
+  const [preco, setPreco] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -13,8 +13,8 @@ function AdicionarHorarioModal({ onClose, onAddHorario, idQuadra, dia }) {
       dia,
       horarioInicio,
       horarioFim,
-      valor,
-      disponivel: "sim"
+      preco,
+      disponibilidade: true
     };
 
     onAddHorario(novoHorario);
@@ -44,13 +44,13 @@ function AdicionarHorarioModal({ onClose, onAddHorario, idQuadra, dia }) {
             />
           </div>
           <div className="input-group">
-            <label>Valor:</label>
+            <label>Preço:</label>
             <input
               type="number"
               min="0"
               step="0.01"
-              value={valor}
-              onChange={(e) => setValor(e.target.value)}
+              value={preco}
+              onChange={(e) => setPreco(e.target.value)}
               placeholder="0.00"
               required
             />

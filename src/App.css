@@ -162,11 +162,16 @@
 }
 
 /* CSS RELACIONADO AO GERENCIAR HORÁRIOS */
+.gerenciar-horario{
+  display: flex;
+}
+
 .horarios-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
+  flex-wrap: wrap;
 }
 
 .horarios-list {
@@ -179,8 +184,8 @@
 }
 
 .dia-details {
-  width: 100%;
-  margin-bottom: 20px;
+  min-width: 20vw;
+  margin: 10px;
   background-color: #5f535331;
   padding: 10px;
   border-radius: 8px;
@@ -198,6 +203,8 @@
   display: flex;
   justify-content: space-between;
   margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 3px;
   border: 1px solid black;
   border-radius: 8px;
 }
@@ -220,12 +227,12 @@
   }
 
   .dia-details {
-    flex: 0 1 calc(33.3333% - 20px); /* 3 dias por linha */
+    flex: 0 1 calc(33.3333% - 20px);
   }
 }
 
 @media (min-width: 1024px) {
   .dia-details {
-    flex: 0 1 calc(25% - 20px); /* 4 dias por linha */
+    flex: 0 1 calc(25% - 20px);
   }
 }

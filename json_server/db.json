@@ -21,7 +21,7 @@
       "locatario": "Harpa.AI Arena"
     },
     {
-      "id": 1713997054411,
+      "id": "1713997054411",
       "nome": "GOAT Arena",
       "rua": "GOAT",
       "numero": "15",
@@ -29,178 +29,99 @@
       "cidade": "GOAT",
       "cep": "36881020",
       "locatario": "GOAT"
+    },
+    {
+      "id": 1714022261475,
+      "nome": "goati arena",
+      "rua": "Rua",
+      "numero": "30",
+      "bairro": "SF",
+      "cidade": "Muriaé",
+      "cep": "36881020",
+      "locatario": "Harpa.AI Arena"
     }
   ],
   "horarios": [
     {
-      "id": "98b0"
-    },
-    {
-      "id": "1713984664567",
-      "horarioInicio": "10:00",
-      "horarioFim": "10:50",
-      "valor": "100.00"
-    },
-    {
-      "id": "1713985019374",
-      "dia": "Segunda",
-      "horarioInicio": "08:00",
-      "horarioFim": "08:50",
-      "valor": "100.00"
-    },
-    {
-      "id": "1713985240659",
-      "dia": "Terça",
-      "horarioInicio": "07:00",
-      "horarioFim": "07:50",
-      "valor": "100"
-    },
-    {
-      "id": "1713985373652",
-      "dia": "Segunda",
-      "horarioInicio": "09:00",
-      "horarioFim": "09:50",
-      "valor": "150"
-    },
-    {
-      "id": "1713985405907",
-      "dia": "Segunda",
-      "horarioInicio": "10:00",
-      "horarioFim": "10:50",
-      "valor": "150"
-    },
-    {
-      "id": "1713985579211",
-      "dia": "Quarta",
-      "horarioInicio": "07:00",
-      "horarioFim": "08:00",
-      "valor": "50"
-    },
-    {
-      "id": "1713986439011",
-      "dia": "Segunda",
-      "horarioInicio": "10:00",
-      "horarioFim": "11:00",
-      "valor": "150"
-    },
-    {
-      "id": "1713986450410",
-      "dia": "Segunda",
-      "horarioInicio": "10:00",
-      "horarioFim": "11:11",
-      "valor": "1111"
-    },
-    {
-      "id": "1713986731060",
-      "dia": "Segunda",
-      "horarioInicio": "08:00",
-      "horarioFim": "08:50",
-      "valor": "150"
-    },
-    {
-      "id": "1713986866794",
-      "dia": "Segunda",
-      "horarioInicio": "07:00",
-      "horarioFim": "07:50",
-      "valor": "150000"
-    },
-    {
-      "id": "1713987362953",
-      "idQuadra": "1713986246188",
-      "dia": "Segunda",
-      "horarioInicio": "07:00",
-      "horarioFim": "07:50",
-      "valor": "150",
-      "quadraId": "1713986246188"
-    },
-    {
-      "id": "1713987390322",
-      "idQuadra": "ae31",
-      "dia": "Segunda",
-      "horarioInicio": "10:00",
-      "horarioFim": "10:50",
-      "valor": "500",
-      "quadraId": "ae31"
-    },
-    {
-      "id": "1713987403698",
-      "idQuadra": "ae31",
-      "dia": "Segunda",
-      "horarioInicio": "11:00",
-      "horarioFim": "11:50",
-      "valor": "600",
-      "quadraId": "ae31"
-    },
-    {
-      "id": "1713987595722",
-      "idQuadra": "1713986246188",
-      "dia": "Domingo",
-      "horarioInicio": "10:00",
-      "horarioFim": "11:00",
-      "valor": "1.03",
-      "quadraId": "1713986246188"
-    },
-    {
-      "id": "1713987862649",
-      "idQuadra": "ae31",
-      "dia": "Segunda",
-      "horarioInicio": "23:00",
-      "horarioFim": "23:59",
-      "valor": "100",
-      "quadraId": "ae31"
-    },
-    {
-      "id": "1713988008301",
-      "idQuadra": "ae31",
-      "dia": "Segunda",
-      "horarioInicio": "15:00",
-      "horarioFim": "17:00",
-      "valor": "90",
-      "quadraId": "ae31"
-    },
-    {
-      "id": "1713988595057",
-      "idQuadra": "ae31",
-      "dia": "Segunda",
-      "horarioInicio": "15:00",
-      "horarioFim": "16:00",
-      "valor": "1100",
-      "quadraId": "ae31"
-    },
-    {
-      "id": 1713997073674,
-      "idQuadra": "1713997054411",
-      "dia": "Segunda",
-      "horarioInicio": "08:00",
-      "horarioFim": "08:50",
-      "valor": "150",
-      "quadraId": "1713997054411"
-    },
-    {
-      "id": 1713997081530,
-      "idQuadra": "1713997054411",
-      "dia": "Segunda",
-      "horarioInicio": "09:00",
-      "horarioFim": "09:50",
-      "valor": "10000",
-      "quadraId": "1713997054411"
-    },
-    {
-      "id": 1713997183297,
-      "dia": "Terça",
-      "horarioInicio": "07:00",
-      "horarioFim": "07:50",
-      "valor": "100",
-      "quadraId": "1713997054411"
-    },
-    {
-      "id": 1713999403706,
-      "dia": "Terça",
+      "id": 1714020766292,
+      "dia": "Sexta",
       "horarioInicio": "06:00",
       "horarioFim": "06:50",
-      "valor": "150.00",
-      "disponivel": "sim",
-      "quadraId": "ae31"
+      "preco": "150",
+      "disponibilidade": true,
+      "quadraId": "1713997054411"
+    },
+    {
+      "id": 1714020856653,
+      "dia": "Sexta",
+      "horarioInicio": "03:50",
+      "horarioFim": "03:59",
+      "preco": "150",
+      "disponibilidade": true,
+      "quadraId": "1713997054411"
+    },
+    {
+      "id": 17140208566543,
+      "dia": "Sexta",
+      "horarioInicio": "03:50",
+      "horarioFim": "03:59",
+      "preco": "150",
+      "disponibilidade": true,
+      "quadraId": "1713997054411"
+    },
+    {
+      "id": 17140204856653,
+      "dia": "Sexta",
+      "horarioInicio": "03:50",
+      "horarioFim": "03:59",
+      "preco": "150",
+      "disponibilidade": true,
+      "quadraId": "1713997054411"
+    },
+    {
+      "id": 17140208256653,
+      "dia": "Sexta",
+      "horarioInicio": "03:50",
+      "horarioFim": "03:59",
+      "preco": "150",
+      "disponibilidade": true,
+      "quadraId": "1713997054411"
+    },
+    {
+      "id": 17140208556653,
+      "dia": "Sexta",
+      "horarioInicio": "03:50",
+      "horarioFim": "03:59",
+      "preco": "150",
+      "disponibilidade": true,
+      "quadraId": "1713997054411"
+    },
+    {
+      "id": 171402085226653,
+      "dia": "Sexta",
+      "horarioInicio": "03:50",
+      "horarioFim": "03:59",
+      "preco": "150",
+      "disponibilidade": true,
+      "quadraId": "1713997054411"
+    },
+    {
+      "id": 1714021482148,
+      "dia": "Sexta",
+      "horarioInicio": "06:00",
+      "horarioFim": "06:50",
+      "preco": "150",
+      "disponibilidade": true,
+      "quadraId": "1713997054411"
+    },
+    {
+      "id": 1714022280043,
+      "dia": "Sexta",
+      "horarioInicio": "03:00",
+      "horarioFim": "03:50",
+      "preco": "150",
+      "disponibilidade": true,
+      "quadraId": "1714022261475"
     }
   ]
 }
