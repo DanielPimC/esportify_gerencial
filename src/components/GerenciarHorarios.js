@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import AdicionarHorarioModal from './AdicionarHorarioModal';
+import { BASE_URL } from '../services/api-connection'
 
 function GerenciarHorarios() {
     const navigate = useNavigate()
@@ -20,8 +21,7 @@ function GerenciarHorarios() {
   useEffect(() => {
     const fetchHorarios = async () => {
       try {
-        const link = `http://localhost:3003/horarios_aluguel/${idQuadra}`
-        const response = await axios.get(link);
+        const response = await axios.get(`${BASE_URL}horarios_aluguel/${idQuadra}`);
         setHorarios(response.data.horarios_aluguel);
         console.log(response.data.horarios_aluguel)
       } catch (error) {
