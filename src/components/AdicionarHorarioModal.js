@@ -9,12 +9,10 @@ function AdicionarHorarioModal({ onClose, onAddHorario, dia }) {
     e.preventDefault();
 
     const novoHorario = {
-      id: Date.now(),
-      dia,
-      horarioInicio,
-      horarioFim,
-      preco,
-      disponibilidade: true
+      id_dia_semana: dia.id_dia_semana,
+      horario_inicial: horarioInicio,
+      horario_final: horarioFim,
+      preco: parseFloat(preco)
     };
 
     onAddHorario(novoHorario);
