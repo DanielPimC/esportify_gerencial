@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
 
 function Quadra({ quadra }) {
-  const { id_quadra, nome, rua, numero, bairro, cidade, cep } = quadra;
+  const { id_quadra, nome } = quadra;
+  const { rua, numero, bairro, cidade, cep } = quadra.endereco
   const navigate = useNavigate()
 
   const gerenciarQuadra = () => {

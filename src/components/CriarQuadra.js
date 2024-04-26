@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { BASE_URL } from '../services/api-connection'
 
 function CriarQuadra() {
   const [nome, setNome] = useState('');
@@ -25,10 +26,9 @@ function CriarQuadra() {
       locatario
     };
 
-    const link = 'http://localhost:3003/quadra/add'
     try {
       console.log(novaQuadra)
-      const response = await axios.post(link, novaQuadra);
+      const response = await axios.post(`${BASE_URL}quadra/add`, novaQuadra);
       console.log(response.data);
       navigate('/');
     } catch (error) {

@@ -3,6 +3,7 @@ import { Route, Routes, Link, useNavigate } from 'react-router-dom';
 import Quadra from './Quadra';
 import CriarQuadra from './CriarQuadra';
 import axios from 'axios';
+import { BASE_URL } from '../services/api-connection'
 
 function GerenciarQuadras() {
   const [quadras, setQuadras] = useState([]);
@@ -11,10 +12,8 @@ function GerenciarQuadras() {
   useEffect(() => {
     const fetchQuadras = async () => {
       try {
-        const link = `http://localhost:3003/quadra`
-        const response = await axios.get(link);
-        console.log(response)
-        setQuadras(response.data.quadras);
+        const response = await axios.get(`${BASE_URL}quadra`)
+        setQuadras(response.data.quadras)
       } catch (error) {
         console.error('Erro ao buscar quadras:', error);
       }
@@ -35,7 +34,7 @@ function GerenciarQuadras() {
     return (
       <div className="quadras-list">
         {quadras.map((quadra) => (
-          <Quadra key={quadra.id} quadra={quadra} />
+          <Quadra key={quadra.id_quadra} quadra={quadra} />
         ))}
       </div>
     );
