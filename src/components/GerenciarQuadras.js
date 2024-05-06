@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Route, Routes, Link, useNavigate } from 'react-router-dom';
 import Quadra from './Quadra';
 import CriarQuadra from './CriarQuadra';
+import Loading from './Loading/Loading';
 import axios from 'axios';
 import { BASE_URL } from '../services/api-connection'
 
 function GerenciarQuadras() {
-  const [quadras, setQuadras] = useState([]);
+  const [isLoading, setIsLoading] = useState(true)
+  const [quadras, setQuadras] = useState([])
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -15,7 +17,9 @@ function GerenciarQuadras() {
         const response = await axios.get(`${BASE_URL}quadra`)
         setQuadras(response.data.quadras)
       } catch (error) {
-        console.error('Erro ao buscar quadras:', error);
+        console.error('Erro ao buscar quadras:', error)
+      } finally {
+        setIsLoading(false)
       }
     };
 
@@ -27,8 +31,12 @@ function GerenciarQuadras() {
   };
 
   const renderizarQuadras = () => {
+    if (isLoading) {
+      return <Loading isLoading={isLoading} />
+    }
+
     if (quadras.length === 0) {
-      return <p>Nenhuma quadra adicionada ainda.</p>;
+      return <p>Nenhuma quadra adicionada ainda.</p>
     }
 
     return (

@@ -150,7 +150,7 @@
 
 
 /* CSS RELACIONADO AO BOTÃO DE GERENCIAR HORÁRIO DA QUADRA */
-.btn-show-id {
+.btn-configure {
   position: absolute;
   right: 10px;
   top: 0;
@@ -235,4 +235,23 @@
   .dia-details {
     flex: 0 1 calc(25% - 20px);
   }
+}
+
+/* CSS RELACIONADO AO LOADING */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+}
+
+.loading {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10000;
 }

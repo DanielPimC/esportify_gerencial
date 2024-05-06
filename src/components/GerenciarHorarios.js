@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import AdicionarHorarioModal from './AdicionarHorarioModal';
 import { BASE_URL } from '../services/api-connection';
+import Loading from './Loading/Loading';
 
 function GerenciarHorarios() {
     const navigate = useNavigate();
@@ -10,6 +11,7 @@ function GerenciarHorarios() {
     const [diasSemana, setDiasSemana] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [diaSelecionado, setDiaSelecionado] = useState('');
+    const [isLoading, setIsLoading] = useState(true);
     const idQuadra = localStorage.getItem('idQuadra');
 
     useEffect(() => {
@@ -20,28 +22,24 @@ function GerenciarHorarios() {
     }, [idQuadra, navigate]);
 
     useEffect(() => {
-        const fetchDiasSemana = async () => {
+        const fetchData = async () => {
             try {
-                const response = await axios.get(`${BASE_URL}dias_semana`);
-                setDiasSemana(response.data.dias_da_semana);
+                setIsLoading(true);
+                const [diasResponse, horariosResponse] = await Promise.all([
+                    axios.get(`${BASE_URL}dias_semana`),
+                    axios.get(`${BASE_URL}horarios_aluguel/${idQuadra}`)
+                ]);
+                setDiasSemana(diasResponse.data.dias_da_semana);
+                setHorarios(horariosResponse.data.horarios_aluguel);
             } catch (error) {
-                console.error('Erro ao buscar dias da semana:', error);
-            }
-        };
-
-        const fetchHorarios = async () => {
-            try {
-                const response = await axios.get(`${BASE_URL}horarios_aluguel/${idQuadra}`);
-                setHorarios(response.data.horarios_aluguel);
-                console.log(`Horários: ${response.data.horarios_aluguel}`);
-            } catch (error) {
-                console.error('Erro ao buscar horários:', error);
+                console.error('Erro ao buscar dados:', error);
+            } finally {
+                setIsLoading(false);
             }
         };
 
         if (idQuadra) {
-            fetchDiasSemana();
-            fetchHorarios();
+            fetchData();
         }
     }, [idQuadra]);
 
@@ -52,6 +50,7 @@ function GerenciarHorarios() {
 
     const adicionarHorario = async (horario) => {
         try {
+            setIsLoading(true);
             await axios.post(`${BASE_URL}horario/add`, {
                 id_quadra: idQuadra,
                 id_dia_semana: horario.id_dia_semana,
@@ -64,10 +63,16 @@ function GerenciarHorarios() {
             setHorarios(response.data.horarios_aluguel);
         } catch (error) {
             console.error('Erro ao adicionar horário:', error);
+        } finally {
+            setIsLoading(false);
         }
     };
 
     const renderizarHorarios = () => {
+        if (isLoading) {
+            return <Loading isLoading={isLoading} />;
+        }
+        
         return (
             <div className="horarios-container">
                 {diasSemana.map((dia) => {

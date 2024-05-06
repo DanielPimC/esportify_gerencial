@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import MenuIcon from '@mui/icons-material/Menu';
 
 function Quadra({ quadra }) {
   const { id_quadra, nome } = quadra;
@@ -12,9 +13,7 @@ function Quadra({ quadra }) {
 
   return (
     <div className="quadra">
-      <button className="btn-show-id" onClick={gerenciarQuadra}>
-        …
-      </button>
+      <MenuIcon className="btn-configure" onClick={gerenciarQuadra} />
       <h3>{nome}</h3>
       <p>ID {id_quadra}</p>
       <h5>Rua {rua}, nº {numero}, bairro {bairro}, cidade {cidade}, CEP {cep}</h5>

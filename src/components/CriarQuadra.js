@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { BASE_URL } from '../services/api-connection'
+import Loading from './Loading/Loading';
 
 function CriarQuadra() {
   const [nome, setNome] = useState('');
@@ -11,6 +12,7 @@ function CriarQuadra() {
   const [bairro, setBairro] = useState('');
   const [cidade, setCidade] = useState('');
   const [cep, setCEP] = useState('');
+  const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -27,18 +29,22 @@ function CriarQuadra() {
     };
 
     try {
+      setIsLoading(true)
       console.log(novaQuadra)
       const response = await axios.post(`${BASE_URL}quadra/add`, novaQuadra);
       console.log(response.data);
       navigate('/');
     } catch (error) {
       console.error('Erro ao adicionar quadra:', error);
+    } finally {
+      setIsLoading(false)
     }
   };
 
   return (
     <div className="quadra-form-container">
       <h2>Adicionar Quadra</h2>
+      <Loading isLoading={isLoading} />
       <form className="quadra-form" onSubmit={handleSubmit}>
         <div className="input-group">
           <label>Nome da Quadra:</label>
