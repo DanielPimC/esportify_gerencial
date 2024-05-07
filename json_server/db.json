@@ -1,127 +1,61 @@
 {
-  "quadras": [
+  "empresas": [
     {
-      "id": "ae31",
-      "nome": "GOAT Arena",
-      "rua": "GOAT Street",
-      "numero": "30",
-      "bairro": "GOAT Bairro",
-      "cidade": "Muriaé",
-      "cep": "36881020",
-      "locatario": "GOAT Quadras"
-    },
-    {
-      "id": "1713986246188",
-      "nome": "Harpa.AI Arena",
-      "rua": "Rua",
-      "numero": "30",
-      "bairro": "SF",
-      "cidade": "Muriaé",
-      "cep": "36881020",
-      "locatario": "Harpa.AI Arena"
-    },
-    {
-      "id": "1713997054411",
-      "nome": "GOAT Arena",
-      "rua": "GOAT",
-      "numero": "15",
-      "bairro": "GOAT",
-      "cidade": "GOAT",
-      "cep": "36881020",
-      "locatario": "GOAT"
-    },
-    {
-      "id": 1714022261475,
-      "nome": "goati arena",
-      "rua": "Rua",
-      "numero": "30",
-      "bairro": "SF",
-      "cidade": "Muriaé",
-      "cep": "36881020",
-      "locatario": "Harpa.AI Arena"
+      "cnpj": "12345",
+      "nome": "Sol e Neve"
     }
   ],
-  "horarios": [
+  "user": [
     {
-      "id": 1714020766292,
-      "dia": "Sexta",
-      "horarioInicio": "06:00",
-      "horarioFim": "06:50",
-      "preco": "150",
-      "disponibilidade": true,
-      "quadraId": "1713997054411"
+      "token": "151515",
+      "empresa": "Sol e Neve",
+      "nome": "Daniel",
+      "email": "danielpimentel@gmail.com",
+      "password": "senha123"
     },
     {
-      "id": 1714020856653,
-      "dia": "Sexta",
-      "horarioInicio": "03:50",
-      "horarioFim": "03:59",
-      "preco": "150",
-      "disponibilidade": true,
-      "quadraId": "1713997054411"
+      "id": "42c3",
+      "token": 1715108938826,
+      "companyName": "Sol e Neve",
+      "name": "Joaquim",
+      "email": "joaquim@email.com",
+      "password": "senha123"
     },
     {
-      "id": 17140208566543,
-      "dia": "Sexta",
-      "horarioInicio": "03:50",
-      "horarioFim": "03:59",
-      "preco": "150",
-      "disponibilidade": true,
-      "quadraId": "1713997054411"
+      "id": "5b9e",
+      "email": "joaquim@email.com",
+      "password": "senha123"
     },
     {
-      "id": 17140204856653,
-      "dia": "Sexta",
-      "horarioInicio": "03:50",
-      "horarioFim": "03:59",
-      "preco": "150",
-      "disponibilidade": true,
-      "quadraId": "1713997054411"
+      "id": "486c",
+      "email": "fjnsjfsnfj/@email.com",
+      "password": "eufhufh"
     },
     {
-      "id": 17140208256653,
-      "dia": "Sexta",
-      "horarioInicio": "03:50",
-      "horarioFim": "03:59",
-      "preco": "150",
-      "disponibilidade": true,
-      "quadraId": "1713997054411"
+      "id": "55e3",
+      "token": 1715109111865,
+      "companyName": "Sol e Neve",
+      "name": "Daniel",
+      "email": "danielpimentelc5@gmail.com",
+      "password": "nifnidfndfjdifjdgid"
     },
     {
-      "id": 17140208556653,
-      "dia": "Sexta",
-      "horarioInicio": "03:50",
-      "horarioFim": "03:59",
-      "preco": "150",
-      "disponibilidade": true,
-      "quadraId": "1713997054411"
+      "id": "4bf0",
+      "token": 1715109146058,
+      "companyName": "Sol e Neve",
+      "name": "Joaquim",
+      "email": "joaquim@email.com",
+      "password": "sfsfsfsfsf"
     },
     {
-      "id": 171402085226653,
-      "dia": "Sexta",
-      "horarioInicio": "03:50",
-      "horarioFim": "03:59",
-      "preco": "150",
-      "disponibilidade": true,
-      "quadraId": "1713997054411"
+      "id": "1ab0",
+      "email": "isnfisnfif@email.com",
+      "password": "soifoudihdhg"
     },
     {
-      "id": 1714021482148,
-      "dia": "Sexta",
-      "horarioInicio": "06:00",
-      "horarioFim": "06:50",
-      "preco": "150",
-      "disponibilidade": true,
-      "quadraId": "1713997054411"
-    },
-    {
-      "id": 1714022280043,
-      "dia": "Sexta",
-      "horarioInicio": "03:00",
-      "horarioFim": "03:50",
-      "preco": "150",
-      "disponibilidade": true,
-      "quadraId": "1714022261475"
+      "id": "bf04",
+      "email": "",
+      "password": ""
     }
   ]
 }
