@@ -120,12 +120,12 @@
 .quadra-form {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Adicionado para centralizar os elementos internos horizontalmente */
+  align-items: center;
 }
 
 .input-group {
   margin-bottom: 15px;
-  width: 100%; /* Adicionado para ocupar a largura do container */
+  width: 100%;
 }
 
 .input-group label {
@@ -339,14 +339,14 @@
 }
 
 .left-panel {
-  width: 30vw;
+  width: 50vw;
   padding: 20px;
   display: flex;
   align-items: center;
 }
 
 .right-panel {
-  width: 70vw;
+  width: 60vw;
   height: 100%;
 }
 

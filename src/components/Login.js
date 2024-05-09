@@ -2,24 +2,26 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { BASE_URL_JSON } from '../services/api-connection';
+import Loading from './Loading/Loading'
 
 function Home() {
-  const [mode, setMode] = useState('home'); // 'home', 'cnpj', 'register' ou 'login'
+  const [mode, setMode] = useState('home');
   const [cnpj, setCnpj] = useState('');
   const [companyName, setCompanyName] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
-  const navigate = useNavigate()
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleCnpjSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       setErrorMessage('');
       const response = await axios.get(`${BASE_URL_JSON}empresas?cnpj=${cnpj}`);
-      console.log(response.data[0])
+      console.log(response.data[0]);
       if (response.data[0]) {
         setCompanyName(response.data[0].nome);
         setMode('register');
@@ -30,11 +32,14 @@ function Home() {
     } catch (error) {
       console.error('Error:', error);
       setErrorMessage('Ocorreu um erro ao buscar a empresa.');
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const handleRegisterSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       const response = await axios.post(`${BASE_URL_JSON}user`, {
         token: Date.now(),
@@ -52,11 +57,14 @@ function Home() {
     } catch (error) {
       console.error('Error:', error);
       setErrorMessage('Ocorreu um erro ao registrar.');
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true); 
     try {
       const response = await axios.post(`${BASE_URL_JSON}user`, {
         email,
@@ -64,11 +72,12 @@ function Home() {
       });
       const token = response.data.token;
       localStorage.setItem('token', token);
-      setSuccessMessage('Login bem-sucedido!');
-      navigate('/gerenciar-quadras')
+      navigate('/gerenciar-quadras');
     } catch (error) {
       console.error('Error:', error);
       setErrorMessage('Credenciais inválidas.');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -117,6 +126,10 @@ function Home() {
       <div className="right-panel">
         <img src="https://i.imgur.com/a4W0QOu.png" alt="Imagem de início" className='img-panel'/>
       </div>
+
+      {isLoading && (
+        <Loading isLoading={isLoading} />
+      )}
     </div>
   );
 }
