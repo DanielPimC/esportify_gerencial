@@ -8,6 +8,7 @@ function Quadra({ quadra }) {
 
   const gerenciarQuadra = () => {
     localStorage.setItem("idQuadra", id_quadra)
+    localStorage.setItem("nomeQuadra", nome)
     navigate(`/gerenciar-horarios`)
   };
 

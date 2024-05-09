@@ -78,16 +78,16 @@ function Home() {
         {mode === 'home' && (
           <div>
             <h2>Escolha uma opção:</h2>
-            <button onClick={() => setMode('cnpj')}>REGISTRO</button>
-            <button onClick={() => setMode('login')}>LOGIN</button>
+            <button className='btn-login' onClick={() => setMode('cnpj')}>REGISTRO</button>
+            <button className='btn-login' onClick={() => setMode('login')}>LOGIN</button>
           </div>
         )}
 
         {mode === 'cnpj' && (
           <form onSubmit={handleCnpjSubmit}>
             <h2>Digite o CNPJ:</h2>
-            <input type="text" value={cnpj} onChange={(e) => setCnpj(e.target.value)} />
-            <button type="submit">Enviar</button>
+            <input type="text" className='input-login' value={cnpj} onChange={(e) => setCnpj(e.target.value)} required/>
+            <button type="submit" className='btn-login'>Enviar</button>
             {errorMessage && <p className='error-message'>{errorMessage}</p>}
           </form>
         )}
@@ -95,10 +95,10 @@ function Home() {
         {mode === 'login' && (
           <form onSubmit={handleLoginSubmit}>
             <h2>Login:</h2>
-            <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-            <input type="password" placeholder="Senha" value={password} onChange={(e) => setPassword(e.target.value)} />
-            <button type="submit">Entrar</button>
-            {errorMessage && <p>{errorMessage}</p>}
+            <input type="email" className='input-login' placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required/>
+            <input type="password" className='input-login' placeholder="Senha" value={password} onChange={(e) => setPassword(e.target.value)} required/>
+            <button type="submit" className='btn-login'>Entrar</button>
+            {errorMessage && <p className='error-message'>{errorMessage}</p>}
           </form>
         )}
 
@@ -109,7 +109,7 @@ function Home() {
             <input type="text" placeholder="Nome" value={name} onChange={(e) => setName(e.target.value)} required />
             <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required/>
             <input type="password" placeholder="Senha" value={password} onChange={(e) => setPassword(e.target.value)} required/>
-            <button type="submit">Registrar</button>
+            <button type="submit" className='btn-login'>Registrar</button>
             {errorMessage && <p className='error-message'>{errorMessage}</p>}
           </form>
         )}

@@ -2,7 +2,8 @@
   "empresas": [
     {
       "cnpj": "12345",
-      "nome": "Sol e Neve"
+      "nome": "Sol e Neve",
+      "id": "532f"
     }
   ],
   "user": [
@@ -11,7 +12,8 @@
       "empresa": "Sol e Neve",
       "nome": "Daniel",
       "email": "danielpimentel@gmail.com",
-      "password": "senha123"
+      "password": "senha123",
+      "id": "ecfc"
     },
     {
       "id": "42c3",
@@ -56,6 +58,24 @@
       "id": "bf04",
       "email": "",
       "password": ""
+    },
+    {
+      "id": "6aba",
+      "email": "sfosjfosjfj@email.com",
+      "password": "dhufhdughdg"
+    },
+    {
+      "id": "f983",
+      "token": 1715281470761,
+      "companyName": "Sol e Neve",
+      "name": "sdsfsf",
+      "email": "sfsfsfsfsfsf@email.com",
+      "password": "sfsfsf"
+    },
+    {
+      "id": "159a",
+      "email": "sfsfsfsfsfsf@email.com",
+      "password": "12345"
     }
   ]
 }

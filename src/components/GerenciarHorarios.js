@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import AdicionarHorarioModal from './AdicionarHorarioModal';
 import { BASE_URL } from '../services/api-connection';
 import Loading from './Loading/Loading';
+import DeleteIcon from '@mui/icons-material/Delete';
+import AlarmIcon from '@mui/icons-material/Alarm';
 
 function GerenciarHorarios() {
     const navigate = useNavigate();
@@ -13,6 +15,7 @@ function GerenciarHorarios() {
     const [diaSelecionado, setDiaSelecionado] = useState('');
     const [isLoading, setIsLoading] = useState(true);
     const idQuadra = localStorage.getItem('idQuadra');
+    const nomeQuadra = localStorage.getItem('nomeQuadra')
 
     useEffect(() => {
         if (!idQuadra) {
@@ -87,6 +90,7 @@ function GerenciarHorarios() {
                                             <p>Horário Início: {horario.horario_inicial}</p>
                                             <p>Horário Fim: {horario.horario_final}</p>
                                             <p>Valor: {horario.preco}</p>
+                                            <DeleteIcon  onClick={() => alert(`ID delete: ${horario.id_horario_aluguel}`)} />
                                         </div>
                                     ))
                                 ) : (
@@ -105,7 +109,10 @@ function GerenciarHorarios() {
 
     return (
         <div className="horarios-container">
-            <h2 className='gerenciar-horario'>{`Gerenciar Horário - Quadra ${idQuadra}`}</h2>
+            <h2 className='gerenciar-horario'>
+                <AlarmIcon style={{ padding: '5px' }} />
+                Gerenciar Horário - {nomeQuadra}
+            </h2>
             {renderizarHorarios()}
             {isModalOpen && (
                 <AdicionarHorarioModal

@@ -50,6 +50,7 @@ function CriarQuadra() {
           <label>Nome da Quadra:</label>
           <input
             type="text"
+            className='input-form'
             value={nome}
             onChange={(e) => setNome(e.target.value)}
             placeholder='Digite aqui...'
@@ -58,6 +59,7 @@ function CriarQuadra() {
           <label>Nome do Locatário:</label>
           <input
             type="text"
+            className='input-form'
             value={locatario}
             onChange={(e) => setLocatario(e.target.value)}
             placeholder='Digite aqui...'
@@ -69,6 +71,7 @@ function CriarQuadra() {
           <div className="endereco">
             <input
               type="text"
+              className='input-form'
               value={rua}
               onChange={(e) => setRua(e.target.value)}
               placeholder='Rua'
@@ -76,6 +79,7 @@ function CriarQuadra() {
             />
             <input
               type="number"
+              className='input-form'
               min={0}
               value={numero}
               onChange={(e) => setNumero(e.target.value)}
@@ -84,6 +88,7 @@ function CriarQuadra() {
             />
             <input
               type="text"
+              className='input-form'
               value={bairro}
               onChange={(e) => setBairro(e.target.value)}
               placeholder='Bairro'
@@ -91,6 +96,7 @@ function CriarQuadra() {
             />
             <input
               type="text"
+              className='input-form'
               value={cidade}
               onChange={(e) => setCidade(e.target.value)}
               placeholder='Cidade'
@@ -98,6 +104,7 @@ function CriarQuadra() {
             />
             <input
               type="text"
+              className='input-form'
               value={cep}
               onChange={(e) => setCEP(e.target.value)}
               placeholder='CEP'

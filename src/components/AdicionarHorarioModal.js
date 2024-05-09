@@ -21,9 +21,9 @@ function AdicionarHorarioModal({ onClose, onAddHorario, dia }) {
   return (
     <div className="modal-overlay">
       <div className="modal-content">
-        <h2>Adicionar Horário</h2>
+        <h2>Adicionar Horário - {dia.desc_dia}</h2>
         <form onSubmit={handleSubmit}>
-          <div className="input-group">
+          <div className="input-group-modal">
             <label>Horário Início:</label>
             <input
               type="time"
@@ -32,7 +32,7 @@ function AdicionarHorarioModal({ onClose, onAddHorario, dia }) {
               required
             />
           </div>
-          <div className="input-group">
+          <div className="input-group-modal">
             <label>Horário Fim:</label>
             <input
               type="time"
@@ -41,7 +41,7 @@ function AdicionarHorarioModal({ onClose, onAddHorario, dia }) {
               required
             />
           </div>
-          <div className="input-group">
+          <div className="input-group-modal">
             <label>Preço:</label>
             <input
               type="number"
@@ -53,8 +53,10 @@ function AdicionarHorarioModal({ onClose, onAddHorario, dia }) {
               required
             />
           </div>
-          <button type="submit">Adicionar</button>
-          <button type="button" onClick={onClose}>Cancelar</button>
+          <div className='btn-container-modal'>
+            <button type="submit" className='btn-modal'>Adicionar</button>
+            <button type="button" className='btn-modal' onClick={onClose}>Cancelar</button>
+          </div>
         </form>
       </div>
     </div>
