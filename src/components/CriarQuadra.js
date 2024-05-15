@@ -1,43 +1,58 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { BASE_URL } from '../services/api-connection'
-import Loading from './Loading/Loading';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { BASE_URL } from "../services/api-connection";
+import Loading from "./Loading/Loading";
 
 function CriarQuadra() {
-  const [nome, setNome] = useState('');
-  const [locatario, setLocatario] = useState('');
-  const [rua, setRua] = useState('');
-  const [numero, setNumero] = useState('');
-  const [bairro, setBairro] = useState('');
-  const [cidade, setCidade] = useState('');
-  const [cep, setCEP] = useState('');
-  const [isLoading, setIsLoading] = useState(false)
+  const [nome, setNome] = useState("");
+  const [locatario, setLocatario] = useState("");
+  const [rua, setRua] = useState("");
+  const [numero, setNumero] = useState("");
+  const [bairro, setBairro] = useState("");
+  const [cidade, setCidade] = useState("");
+  const [cep, setCEP] = useState("");
+  const id_complexo_esportivo = "018f7a26-bc20-7afd-ba6a-1c66f06e802e";
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    navigate("/");
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const novaQuadra = {
       nome,
-      rua,
+      id_complexo_esportivo,
+      /*rua,
       numero,
       bairro,
       cidade,
       cep,
-      locatario
+      locatario*/
     };
 
     try {
-      setIsLoading(true)
-      console.log(novaQuadra)
-      const response = await axios.post(`${BASE_URL}quadra/add`, novaQuadra);
+      setIsLoading(true);
+      console.log(novaQuadra);
+      const response = await axios.post(
+        `${BASE_URL}quadra/adicionar-quadra`,
+        novaQuadra,
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
       console.log(response.data);
-      navigate('/');
+      navigate("/gerenciar-quadras");
     } catch (error) {
-      console.error('Erro ao adicionar quadra:', error);
+      console.error("Erro ao adicionar quadra:", error);
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
   };
 
@@ -50,20 +65,20 @@ function CriarQuadra() {
           <label>Nome da Quadra:</label>
           <input
             type="text"
-            className='input-form'
+            className="input-form"
             value={nome}
             onChange={(e) => setNome(e.target.value)}
-            placeholder='Digite aqui...'
-            required
+            placeholder="Digite aqui..."
+            //required
           />
           <label>Nome do Locatário:</label>
           <input
             type="text"
-            className='input-form'
+            className="input-form"
             value={locatario}
             onChange={(e) => setLocatario(e.target.value)}
-            placeholder='Digite aqui...'
-            required
+            placeholder="Digite aqui..."
+            //required
           />
         </div>
         <div className="input-group">
@@ -71,48 +86,50 @@ function CriarQuadra() {
           <div className="endereco">
             <input
               type="text"
-              className='input-form'
+              className="input-form"
               value={rua}
               onChange={(e) => setRua(e.target.value)}
-              placeholder='Rua'
-              required
+              placeholder="Rua"
+              //required
             />
             <input
               type="number"
-              className='input-form'
+              className="input-form"
               min={0}
               value={numero}
               onChange={(e) => setNumero(e.target.value)}
-              placeholder='Número'
-              required
+              placeholder="Número"
+              //required
             />
             <input
               type="text"
-              className='input-form'
+              className="input-form"
               value={bairro}
               onChange={(e) => setBairro(e.target.value)}
-              placeholder='Bairro'
-              required
+              placeholder="Bairro"
+              //required
             />
             <input
               type="text"
-              className='input-form'
+              className="input-form"
               value={cidade}
               onChange={(e) => setCidade(e.target.value)}
-              placeholder='Cidade'
-              required
+              placeholder="Cidade"
+              //required
             />
             <input
               type="text"
-              className='input-form'
+              className="input-form"
               value={cep}
               onChange={(e) => setCEP(e.target.value)}
-              placeholder='CEP'
-              required
+              placeholder="CEP"
+              //required
             />
           </div>
         </div>
-        <button className="btn-submit" type="submit">Adicionar</button>
+        <button className="btn-submit" type="submit">
+          Adicionar
+        </button>
       </form>
     </div>
   );

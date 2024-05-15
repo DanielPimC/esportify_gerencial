@@ -1,29 +1,30 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import { BASE_URL_JSON } from '../services/api-connection';
-import Loading from './Loading/Loading'
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../services/api-connection";
+import Loading from "./Loading/Loading";
 
 function Home() {
-  const [mode, setMode] = useState('home');
-  const [cnpj, setCnpj] = useState('');
-  const [companyName, setCompanyName] = useState('');
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [mode, setMode] = useState("home");
+  // const [cnpj, setCnpj] = useState('');
+  // const [companynome, setCompanynome] = useState(''); //VAI VIRAR ID COMPLEXO ESPORTIVO.
+  const id_complexo_esportivo = "018f7a26-bc20-7afd-ba6a-1c66f06e802e";
+  const [nome, setNome] = useState("");
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleCnpjSubmit = async (e) => {
+  /*  const handleCnpjSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     try {
       setErrorMessage('');
-      const response = await axios.get(`${BASE_URL_JSON}empresas?cnpj=${cnpj}`);
+      const response = await axios.get(`${BASE_URL}empresas?cnpj=${cnpj}`);
       console.log(response.data[0]);
       if (response.data[0]) {
-        setCompanyName(response.data[0].nome);
+        //setCompanynome(response.data[0].nome);
         setMode('register');
       } else {
         setErrorMessage('Empresa não encontrada.');
@@ -36,27 +37,27 @@ function Home() {
       setIsLoading(false);
     }
   };
+*/
 
   const handleRegisterSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const response = await axios.post(`${BASE_URL_JSON}user`, {
-        token: Date.now(),
-        companyName,
-        name,
+      const response = await axios.post(`${BASE_URL}administrador/singup`, {
         email,
-        password
+        senha,
+        nome,
+        id_complexo_esportivo,
       });
       console.log(response.data);
-      alert('Registrado com sucesso!');
-      setEmail('');
-      setPassword('');
-      setName('');
-      setMode('home');
+      alert("Registrado com sucesso!");
+      setEmail("");
+      setSenha("");
+      setNome("");
+      setMode("home");
     } catch (error) {
-      console.error('Error:', error);
-      setErrorMessage('Ocorreu um erro ao registrar.');
+      console.error("Error:", error);
+      setErrorMessage("Ocorreu um erro ao registrar.");
     } finally {
       setIsLoading(false);
     }
@@ -64,18 +65,19 @@ function Home() {
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true); 
+    setIsLoading(true);
     try {
-      const response = await axios.post(`${BASE_URL_JSON}user`, {
+      const response = await axios.post(`${BASE_URL}administrador/login`, {
         email,
-        password
+        senha,
+        id_complexo_esportivo,
       });
       const token = response.data.token;
-      localStorage.setItem('token', token);
-      navigate('/gerenciar-quadras');
+      localStorage.setItem("token", token);
+      navigate("/gerenciar-quadras");
     } catch (error) {
-      console.error('Error:', error);
-      setErrorMessage('Credenciais inválidas.');
+      console.error("Error:", error);
+      setErrorMessage("Credenciais inválidas.");
     } finally {
       setIsLoading(false);
     }
@@ -84,52 +86,99 @@ function Home() {
   return (
     <div className="container-login">
       <div className="left-panel">
-        {mode === 'home' && (
-          <div>
-            <h2>Escolha uma opção:</h2>
-            <button className='btn-login' onClick={() => setMode('cnpj')}>REGISTRO</button>
-            <button className='btn-login' onClick={() => setMode('login')}>LOGIN</button>
-          </div>
-        )}
+        <img
+          src="https://i.imgur.com/yybPDhp.png"
+          className="img-esportify"
+          alt="Esportify"
+        ></img>
 
-        {mode === 'cnpj' && (
-          <form onSubmit={handleCnpjSubmit}>
-            <h2>Digite o CNPJ:</h2>
-            <input type="text" className='input-login' value={cnpj} onChange={(e) => setCnpj(e.target.value)} required/>
-            <button type="submit" className='btn-login'>Enviar</button>
-            {errorMessage && <p className='error-message'>{errorMessage}</p>}
-          </form>
-        )}
+        <div className="login-form-container">
+          {mode === "home" && (
+            <div className="options">
+              <h2>Escolha uma opção:</h2>
+              <button className="btn-login" onClick={() => setMode("register")}>
+                REGISTRO
+              </button>
+              <button className="btn-login" onClick={() => setMode("login")}>
+                LOGIN
+              </button>
+            </div>
+          )}
 
-        {mode === 'login' && (
-          <form onSubmit={handleLoginSubmit}>
-            <h2>Login:</h2>
-            <input type="email" className='input-login' placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required/>
-            <input type="password" className='input-login' placeholder="Senha" value={password} onChange={(e) => setPassword(e.target.value)} required/>
-            <button type="submit" className='btn-login'>Entrar</button>
-            {errorMessage && <p className='error-message'>{errorMessage}</p>}
-          </form>
-        )}
+          {mode === "login" && (
+            <form onSubmit={handleLoginSubmit}>
+              <h2>Login:</h2>
+              <input
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+              <input
+                type="password"
+                placeholder="Senha"
+                value={senha}
+                onChange={(e) => setSenha(e.target.value)}
+                required
+              />
+              <button type="submit" className="btn-login">
+                Entrar
+              </button>
+              {errorMessage && <p className="error-message">{errorMessage}</p>}
+            </form>
+          )}
 
-        {mode === 'register' && (
-          <form onSubmit={handleRegisterSubmit}>
-            <h2>Registrar funcionário:</h2>
-            <p>Empresa: {companyName}</p>
-            <input type="text" placeholder="Nome" value={name} onChange={(e) => setName(e.target.value)} required />
-            <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required/>
-            <input type="password" placeholder="Senha" value={password} onChange={(e) => setPassword(e.target.value)} required/>
-            <button type="submit" className='btn-login'>Registrar</button>
-            {errorMessage && <p className='error-message'>{errorMessage}</p>}
-          </form>
-        )}
+          {mode === "register" && (
+            <form onSubmit={handleRegisterSubmit}>
+              <h2>Registrar funcionário:</h2>
+              <input
+                type="text"
+                placeholder="Nome"
+                value={nome}
+                onChange={(e) => setNome(e.target.value)}
+                required
+              />
+              <input
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+              <input
+                type="password"
+                placeholder="Senha"
+                value={senha}
+                onChange={(e) => setSenha(e.target.value)}
+                required
+              />
+              <button type="submit" className="btn-login">
+                Registrar
+              </button>
+              {errorMessage && <p className="error-message">{errorMessage}</p>}
+            </form>
+          )}
+
+          {/*mode === 'cnpj' && (
+            <form onSubmit={handleCnpjSubmit}>
+              <h2>Digite o CNPJ:</h2>
+              <input type="text" className='input-login' value={cnpj} onChange={(e) => setCnpj(e.target.value)} required/>
+              <button type="submit" className='btn-login'>Enviar</button>
+              {errorMessage && <p className='error-message'>{errorMessage}</p>}
+            </form>
+          )} */}
+        </div>
       </div>
       <div className="right-panel">
-        <img src="https://i.imgur.com/a4W0QOu.png" alt="Imagem de início" className='img-panel'/>
+        <img
+          src="https://i.imgur.com/a4W0QOu.png"
+          alt="Imagem de início"
+          className="img-panel"
+        />
       </div>
 
-      {isLoading && (
-        <Loading isLoading={isLoading} />
-      )}
+      {isLoading && <Loading isLoading={isLoading} />}
     </div>
   );
 }

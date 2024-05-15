@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 function AdicionarHorarioModal({ onClose, onAddHorario, dia }) {
-  const [horarioInicio, setHorarioInicio] = useState('');
-  const [horarioFim, setHorarioFim] = useState('');
-  const [preco, setPreco] = useState('');
+  const [horarioInicio, setHorarioInicio] = useState("");
+  const [horarioFim, setHorarioFim] = useState("");
+  const [preco, setPreco] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -12,7 +12,7 @@ function AdicionarHorarioModal({ onClose, onAddHorario, dia }) {
       id_dia_semana: dia.id_dia_semana,
       horario_inicial: horarioInicio,
       horario_final: horarioFim,
-      preco: parseFloat(preco)
+      preco: parseFloat(preco),
     };
 
     onAddHorario(novoHorario);
@@ -53,9 +53,13 @@ function AdicionarHorarioModal({ onClose, onAddHorario, dia }) {
               required
             />
           </div>
-          <div className='btn-container-modal'>
-            <button type="submit" className='btn-modal'>Adicionar</button>
-            <button type="button" className='btn-modal' onClick={onClose}>Cancelar</button>
+          <div className="btn-container-modal">
+            <button type="submit" className="btn-modal">
+              Adicionar
+            </button>
+            <button type="button" className="btn-modal" onClick={onClose}>
+              Cancelar
+            </button>
           </div>
         </form>
       </div>

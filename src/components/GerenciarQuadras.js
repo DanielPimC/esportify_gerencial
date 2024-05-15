@@ -1,30 +1,40 @@
-import React, { useState, useEffect } from 'react';
-import { Route, Routes, Link, useNavigate } from 'react-router-dom';
-import Quadra from './Quadra';
-import CriarQuadra from './CriarQuadra';
-import Loading from './Loading/Loading';
-import axios from 'axios';
-import { BASE_URL } from '../services/api-connection'
+import React, { useState, useEffect } from "react";
+import { Route, Routes, Link, useNavigate } from "react-router-dom";
+import Quadra from "./Quadra";
+import CriarQuadra from "./CriarQuadra";
+import Loading from "./Loading/Loading";
+import axios from "axios";
+import { BASE_URL } from "../services/api-connection";
 
 function GerenciarQuadras() {
-  const [isLoading, setIsLoading] = useState(true)
-  const [quadras, setQuadras] = useState([])
-  const navigate = useNavigate()
+  const [isLoading, setIsLoading] = useState(true);
+  const [quadras, setQuadras] = useState([]);
+  const navigate = useNavigate();
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    navigate("/");
+  }
 
   useEffect(() => {
     const fetchQuadras = async () => {
       try {
-        const response = await axios.get(`${BASE_URL}quadra`)
-        setQuadras(response.data.quadras)
+        const response = await axios.get(`${BASE_URL}quadra`, {
+          headers: {
+            Authorization: token,
+          },
+        });
+        console.log(response.data.courts);
+        setQuadras(response.data.courts);
       } catch (error) {
-        console.error('Erro ao buscar quadras:', error)
+        console.error("Erro ao buscar quadras:", error);
       } finally {
-        setIsLoading(false)
+        setIsLoading(false);
       }
     };
 
     fetchQuadras();
-  }, []);
+  }, [token]);
 
   const adicionarQuadra = (novaQuadra) => {
     setQuadras([...quadras, novaQuadra]);
@@ -32,17 +42,17 @@ function GerenciarQuadras() {
 
   const renderizarQuadras = () => {
     if (isLoading) {
-      return <Loading isLoading={isLoading} />
+      return <Loading isLoading={isLoading} />;
     }
 
     if (quadras.length === 0) {
-      return <p>Nenhuma quadra adicionada ainda.</p>
+      return <p>Nenhuma quadra adicionada ainda.</p>;
     }
 
     return (
       <div className="quadras-list">
         {quadras.map((quadra) => (
-          <Quadra key={quadra.id_quadra} quadra={quadra} />
+          <Quadra key={quadra.id} quadra={quadra} />
         ))}
       </div>
     );
@@ -52,8 +62,12 @@ function GerenciarQuadras() {
     <div className="container">
       <div className="menu">
         <ul>
-          <li onClick={() => navigate('/gerenciar-quadras')}>Gerenciar Quadras</li>
-          <li onClick={() => navigate('/listar-agendamentos')}>Listar Agendamentos</li>
+          <li onClick={() => navigate("/gerenciar-quadras")}>
+            Gerenciar Quadras
+          </li>
+          <li onClick={() => navigate("/listar-agendamentos")}>
+            Listar Agendamentos
+          </li>
         </ul>
       </div>
       <div className="content">
@@ -64,12 +78,13 @@ function GerenciarQuadras() {
             Adicionar quadra
           </Link>
         </div>
-        <div className="quadras-container">
-          {renderizarQuadras()}
-        </div>
+        <div className="quadras-container">{renderizarQuadras()}</div>
       </div>
       <Routes>
-        <Route path="/criar-quadra" element={<CriarQuadra onAddQuadra={adicionarQuadra} />} />
+        <Route
+          path="/criar-quadra"
+          element={<CriarQuadra onAddQuadra={adicionarQuadra} />}
+        />
       </Routes>
     </div>
   );
