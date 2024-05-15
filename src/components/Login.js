@@ -172,7 +172,8 @@ function Home() {
       </div>
       <div className="right-panel">
         <img
-          src="https://i.imgur.com/a4W0QOu.png"
+          //src="https://i.imgur.com/a4W0QOu.png"
+          src="https://i.imgur.com/mwsaGlE.png"
           alt="Imagem de início"
           className="img-panel"
         />

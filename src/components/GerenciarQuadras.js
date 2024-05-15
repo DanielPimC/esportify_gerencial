@@ -3,6 +3,7 @@ import { Route, Routes, Link, useNavigate } from "react-router-dom";
 import Quadra from "./Quadra";
 import CriarQuadra from "./CriarQuadra";
 import Loading from "./Loading/Loading";
+import MenuLateral from "./MenuLateral/MenuLateral";
 import axios from "axios";
 import { BASE_URL } from "../services/api-connection";
 
@@ -27,6 +28,13 @@ function GerenciarQuadras() {
         console.log(response.data.courts);
         setQuadras(response.data.courts);
       } catch (error) {
+        if (
+          error.response &&
+          (error.response.data.error === "Token expired" ||
+            error.response.data.error === "jwt malformed")
+        ) {
+          localStorage.removeItem("token");
+        }
         console.error("Erro ao buscar quadras:", error);
       } finally {
         setIsLoading(false);
@@ -60,16 +68,7 @@ function GerenciarQuadras() {
 
   return (
     <div className="container">
-      <div className="menu">
-        <ul>
-          <li onClick={() => navigate("/gerenciar-quadras")}>
-            Gerenciar Quadras
-          </li>
-          <li onClick={() => navigate("/listar-agendamentos")}>
-            Listar Agendamentos
-          </li>
-        </ul>
-      </div>
+      <MenuLateral />
       <div className="content">
         <div className="button-container">
           <Link to="/criar-quadra" className="btn-add-quadra">

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import AdicionarHorarioModal from "./AdicionarHorarioModal";
 import { BASE_URL } from "../services/api-connection";
 import Loading from "./Loading/Loading";
+import MenuLateral from "./MenuLateral/MenuLateral";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AlarmIcon from "@mui/icons-material/Alarm";
 
@@ -39,6 +40,13 @@ function GerenciarHorarios() {
         setDiasSemana(diasResponse.data.dias_da_semana);
         setHorarios(horariosResponse.data.times);
       } catch (error) {
+        if (
+          error.response &&
+          (error.response.data.error === "Token expired" ||
+            error.response.data.error === "jwt malformed")
+        ) {
+          localStorage.removeItem("token");
+        }
         console.error("Erro ao buscar dados:", error);
       } finally {
         setIsLoading(false);
@@ -64,7 +72,7 @@ function GerenciarHorarios() {
         `${BASE_URL}quadra/adicionar-horario`,
         {
           id_quadra: idQuadra,
-          id_dia_semana: diaSelecionado.id, //CORRIGIR ESSA MERDA MESMO FUNCIONANDO.
+          id_dia_semana: diaSelecionado.id,
           horario_inicial: horario.horario_inicial,
           horario_final: horario.horario_final,
           preco: horario.preco,
@@ -82,6 +90,13 @@ function GerenciarHorarios() {
       );
       setHorarios(response.data.times);
     } catch (error) {
+      if (
+        error.response &&
+        (error.response.data.error === "Token expired" ||
+          error.response.data.error === "jwt malformed")
+      ) {
+        localStorage.removeItem("token");
+      }
       console.error("Erro ao adicionar horário:", error);
     } finally {
       setIsLoading(false);
@@ -138,6 +153,7 @@ function GerenciarHorarios() {
 
   return (
     <div className="horarios-container">
+      <MenuLateral />
       <h2 className="gerenciar-horario">
         <AlarmIcon style={{ padding: "5px" }} />
         Gerenciar Horário - {nomeQuadra}

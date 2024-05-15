@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL } from "../services/api-connection";
 import Loading from "./Loading/Loading";
+import MenuLateral from "./MenuLateral/MenuLateral";
 
 function CriarQuadra() {
   const [nome, setNome] = useState("");
@@ -50,6 +51,13 @@ function CriarQuadra() {
       console.log(response.data);
       navigate("/gerenciar-quadras");
     } catch (error) {
+      if (
+        error.response &&
+        (error.response.data.error === "Token expired" ||
+          error.response.data.error === "jwt malformed")
+      ) {
+        localStorage.removeItem("token");
+      }
       console.error("Erro ao adicionar quadra:", error);
     } finally {
       setIsLoading(false);
@@ -58,6 +66,7 @@ function CriarQuadra() {
 
   return (
     <div className="quadra-form-container">
+      <MenuLateral />
       <h2>Adicionar Quadra</h2>
       <Loading isLoading={isLoading} />
       <form className="quadra-form" onSubmit={handleSubmit}>
