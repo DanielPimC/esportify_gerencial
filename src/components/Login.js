@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+//import jwt_decode from "jsonwebtoken";
+// npm i buffer, npm i crypto-browserify
 import { BASE_URL } from "../services/api-connection";
 import Loading from "./Loading/Loading";
 
@@ -70,9 +72,14 @@ function Home() {
       const response = await axios.post(`${BASE_URL}administrador/login`, {
         email,
         senha,
-        id_complexo_esportivo,
       });
       const token = response.data.token;
+
+      /*const decoded = jwt_decode(token);
+
+      const idComplexoEsportivo = decoded.idSportsComplex;
+
+      localStorage.setItem("idComplexoEsportivo", idComplexoEsportivo);*/
       localStorage.setItem("token", token);
       navigate("/gerenciar-quadras");
     } catch (error) {
