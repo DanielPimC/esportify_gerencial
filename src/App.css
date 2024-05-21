@@ -216,8 +216,8 @@
 }
 
 .horario-card {
-  display: flex;
-  justify-content: space-between;
+  display: block;
+  text-align: center;
   margin-top: 10px;
   margin-bottom: 10px;
   padding: 3px;
@@ -227,6 +227,24 @@
 
 .horario-card p {
   margin: 0;
+}
+
+.trash-can{
+  display: flex;
+  justify-content: flex-start;
+}
+
+.btn-add-horario {
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #838383;
+  color: white;
+}
+
+.btn-add-horario:hover {
+  background-color: #6d6d6d;
 }
 
 .sem-horarios {
@@ -264,7 +282,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 9999;
+  z-index: 9998;
 }
 
 .modal-content {
@@ -341,8 +359,8 @@
 /* CSS RELACIONADO A TELA DE LOGIN */
 .container-login {
   display: flex;
-  align-items: center;
   height: 100vh;
+  text-align: center;
 }
 
 .left-panel {
@@ -350,23 +368,31 @@
   height: 100%;
   display: flex;
   align-items: center;
+  text-align: center;
   flex-direction: column;
-  background-color: gainsboro;
+}
+
+.text-welcome {
+  margin-top: 50px;
+  margin-bottom: 30px;
+  font-size: 1.5em;
 }
 
 .img-esportify {
-  height: 40vh;
-  width: 20vw;
+  max-height: 40vh;
+  max-width: 40vw;
   margin: 10px;
 }
 
 .right-panel {
-  max-width: 60vw;
-  height: 100%;
+  width: 60vw;
+  min-height: 50vh;
+  max-height: 100vh;
+  background: linear-gradient(to bottom, black, gray);
 }
 
 .img-panel {
-  width: 100%;
+  max-width: 100%;
   height: 100%;
 }
 
@@ -410,4 +436,64 @@ input[type="number"] {
 
 .error-message {
   color: red;
+}
+
+/* CSS RELACIONADO A CONFIRMAÇÃO DE DELETAR HORÁRIO */
+.modal-overlay-delete {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal-content-delete {
+  background-color: whitesmoke;
+  padding: 3%;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  min-width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-title-delete {
+  font-size: 24px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.modal-description-delete {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.modal-buttons-delete {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-delete {
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #838383;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.btn-delete:hover {
+  background-color: #6d6d6d;
 }

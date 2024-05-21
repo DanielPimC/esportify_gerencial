@@ -10,7 +10,7 @@ function Home() {
   const [mode, setMode] = useState("home");
   // const [cnpj, setCnpj] = useState('');
   // const [companynome, setCompanynome] = useState(''); //VAI VIRAR ID COMPLEXO ESPORTIVO.
-  const id_complexo_esportivo = "018f7a26-bc20-7afd-ba6a-1c66f06e802e";
+  const id_complexo_esportivo = "018f9c32-21fb-73a4-aaed-bd90c017c9b3";
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
@@ -94,11 +94,14 @@ function Home() {
     <div className="container-login">
       <div className="left-panel">
         <img
-          src="https://i.imgur.com/yybPDhp.png"
+          //src="https://i.imgur.com/yybPDhp.png"
+          src='https://i.imgur.com/3yICB7X.png'
           className="img-esportify"
-          alt="Esportify"
+          alt="Esportify - Gerencial"
         ></img>
-
+        <div className="text-welcome">
+          <strong>Bem-vindo</strong> ao seu hub de controle e crescimento.
+          </div>
         <div className="login-form-container">
           {mode === "home" && (
             <div className="options">
