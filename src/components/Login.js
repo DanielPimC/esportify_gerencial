@@ -1,15 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-//import jwt_decode from "jsonwebtoken";
-// npm i buffer, npm i crypto-browserify
+import { jwtDecode } from "jwt-decode";
 import { BASE_URL } from "../services/api-connection";
 import Loading from "./Loading/Loading";
 
 function Home() {
   const [mode, setMode] = useState("home");
-  // const [cnpj, setCnpj] = useState('');
-  // const [companynome, setCompanynome] = useState(''); //VAI VIRAR ID COMPLEXO ESPORTIVO.
   const id_complexo_esportivo = "018f9c32-21fb-73a4-aaed-bd90c017c9b3";
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
@@ -74,12 +71,10 @@ function Home() {
         senha,
       });
       const token = response.data.token;
+      const decodedToken = jwtDecode(token);
+      const idSportsComplex = decodedToken.idSportsComplex;
 
-      /*const decoded = jwt_decode(token);
-
-      const idComplexoEsportivo = decoded.idSportsComplex;
-
-      localStorage.setItem("idComplexoEsportivo", idComplexoEsportivo);*/
+      localStorage.setItem("idSportsComplex", idSportsComplex);
       localStorage.setItem("token", token);
       navigate("/gerenciar-quadras");
     } catch (error) {
@@ -95,13 +90,13 @@ function Home() {
       <div className="left-panel">
         <img
           //src="https://i.imgur.com/yybPDhp.png"
-          src='https://i.imgur.com/3yICB7X.png'
+          src="https://i.imgur.com/3yICB7X.png"
           className="img-esportify"
           alt="Esportify - Gerencial"
         ></img>
         <div className="text-welcome">
           <strong>Bem-vindo</strong> ao seu hub de controle e crescimento.
-          </div>
+        </div>
         <div className="login-form-container">
           {mode === "home" && (
             <div className="options">

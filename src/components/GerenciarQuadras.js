@@ -67,9 +67,9 @@ function GerenciarQuadras() {
   };
 
   return (
-    <div className="container">
+    <div>
       <MenuLateral />
-      <div className="content">
+      <div>
         <div className="button-container">
           <Link to="/criar-quadra" className="btn-add-quadra">
             <span className="plus">+</span>

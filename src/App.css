@@ -41,6 +41,11 @@
   background: linear-gradient(to bottom, black, gray);
   width: 200px;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
 }
 
 .menu-lateral ul {
@@ -179,15 +184,17 @@
 /* CSS RELACIONADO AO GERENCIAR HORÁRIOS */
 .gerenciar-horario {
   display: flex;
+  text-align: center;
 }
 
 .horarios-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
   padding: 20px;
-  flex-wrap: wrap;
-  margin-left: 50px;
+  margin-left: 100px;
 }
 
 .horarios-list {
@@ -201,6 +208,7 @@
 
 .dia-details {
   min-width: 20vw;
+  max-width: 200px;
   margin: 10px;
   background-color: #5f535331;
   padding: 10px;
@@ -220,7 +228,7 @@
   text-align: center;
   margin-top: 10px;
   margin-bottom: 10px;
-  padding: 3px;
+  padding: 5px;
   border: 1px solid black;
   border-radius: 8px;
 }
@@ -229,7 +237,7 @@
   margin: 0;
 }
 
-.trash-can{
+.trash-can {
   display: flex;
   justify-content: flex-start;
 }
@@ -253,21 +261,13 @@
   text-align: center;
 }
 
-@media (min-width: 768px) {
+/* Regras de mídia para responsividade */
+@media screen and (max-width: 768px) {
   .horarios-container {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
+    margin-left: 20px;
   }
-
   .dia-details {
-    flex: 0 1 calc(33.3333% - 20px);
-  }
-}
-
-@media (min-width: 1024px) {
-  .dia-details {
-    flex: 0 1 calc(25% - 20px);
+    min-width: 30vw;
   }
 }
 
@@ -348,8 +348,10 @@
 
 .loading {
   position: fixed;
-  height: 40vh;
-  width: 35vw;
+  max-width: 300px;
+  max-height: 300px;
+  min-width: 150px;
+  min-height: 150px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -389,12 +391,18 @@
   min-height: 50vh;
   max-height: 100vh;
   background: linear-gradient(to bottom, black, gray);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .img-panel {
   max-width: 100%;
-  height: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
 }
+
 
 form {
   margin-bottom: 20px;
@@ -449,7 +457,7 @@ input[type="number"] {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 9999;
+  z-index: 9998;
 }
 
 .modal-content-delete {
