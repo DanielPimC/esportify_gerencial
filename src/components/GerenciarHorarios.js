@@ -99,7 +99,7 @@ function GerenciarHorarios() {
         { headers: { Authorization: token } }
       );
       setHorarios(response.data.times);
-      setIsModalOpen(false); // Close the modal on success
+      setIsModalOpen(false);
     } catch (error) {
       if (
         error.response &&
@@ -109,8 +109,13 @@ function GerenciarHorarios() {
         localStorage.removeItem("token");
       }
 
-      if (error.response && error.response.data.error.includes("horário iniciando")) {
-        setErrorMessage(`Já existe outro horário iniciando às ${horario.horario_inicial}`);
+      if (
+        error.response &&
+        error.response.data.error.includes("horário iniciando")
+      ) {
+        setErrorMessage(
+          `Já existe outro horário iniciando às ${horario.horario_inicial}`
+        );
       } else {
         setErrorMessage("Erro ao adicionar horário");
       }
@@ -124,11 +129,14 @@ function GerenciarHorarios() {
   const excluirHorario = async () => {
     try {
       setIsLoading(true);
-      await axios.delete(`${BASE_URL}quadra/deletar-horario/${horarioParaExcluir.id}`, {
-        headers: {
-          Authorization: token,
-        },
-      });
+      await axios.delete(
+        `${BASE_URL}quadra/deletar-horario/${horarioParaExcluir.id}`,
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
       const response = await axios.get(
         `${BASE_URL}quadra/horarios/${idQuadra}`,
         { headers: { Authorization: token } }
@@ -188,9 +196,10 @@ function GerenciarHorarios() {
                     <p>Sem horários definidos.</p>
                   </div>
                 )}
-                <button 
-                onClick={() => toggleModal(dia)}
-                className="btn-add-horario">
+                <button
+                  onClick={() => toggleModal(dia)}
+                  className="btn-add-horario"
+                >
                   Adicionar Horário
                 </button>
               </div>

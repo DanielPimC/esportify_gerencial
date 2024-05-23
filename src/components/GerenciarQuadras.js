@@ -71,10 +71,9 @@ function GerenciarQuadras() {
       <MenuLateral />
       <div>
         <div className="button-container">
+          <p className="minhas-quadras">Minhas quadras:</p>
           <Link to="/criar-quadra" className="btn-add-quadra">
-            <span className="plus">+</span>
-            <br />
-            Adicionar quadra
+            <p>+ Adicionar quadra</p>
           </Link>
         </div>
         <div className="quadras-container">{renderizarQuadras()}</div>

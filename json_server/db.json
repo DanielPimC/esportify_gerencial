@@ -1,107 +1,39 @@
 {
-  "empresas": [
+  "horarios": [
     {
-      "cnpj": "12345",
-      "nome": "Sol e Neve",
-      "id": "532f"
-    }
-  ],
-  "user": [
-    {
-      "token": "151515",
-      "empresa": "Sol e Neve",
-      "nome": "Daniel",
-      "email": "danielpimentel@gmail.com",
-      "password": "senha123",
-      "id": "ecfc"
+      "id": "1",
+      "dia": "23-05-2024",
+      "horario_inicial": "07:00",
+      "horario_final": "08:00",
+       "cliente": "Daniel"
     },
     {
-      "id": "42c3",
-      "token": 1715108938826,
-      "companyName": "Sol e Neve",
-      "name": "Joaquim",
-      "email": "joaquim@email.com",
-      "password": "senha123"
+      "id": "2",
+      "dia": "23-05-2024",
+      "horario_inicial": "08:00",
+      "horario_final": "09:00",
+      "cliente": "Joaquim"
     },
     {
-      "id": "5b9e",
-      "email": "joaquim@email.com",
-      "password": "senha123"
+      "id": "3",
+      "dia": "24-05-2024",
+      "horario_inicial": "07:00",
+      "horario_final": "08:00",
+      "cliente": "Daniel"
     },
     {
-      "id": "486c",
-      "email": "fjnsjfsnfj/@email.com",
-      "password": "eufhufh"
+      "id": "4",
+      "dia": "24-05-2024",
+      "horario_inicial": "08:00",
+      "horario_final": "09:00",
+      "cliente": "João"
     },
     {
-      "id": "55e3",
-      "token": 1715109111865,
-      "companyName": "Sol e Neve",
-      "name": "Daniel",
-      "email": "danielpimentelc5@gmail.com",
-      "password": "nifnidfndfjdifjdgid"
-    },
-    {
-      "id": "4bf0",
-      "token": 1715109146058,
-      "companyName": "Sol e Neve",
-      "name": "Joaquim",
-      "email": "joaquim@email.com",
-      "password": "sfsfsfsfsf"
-    },
-    {
-      "id": "1ab0",
-      "email": "isnfisnfif@email.com",
-      "password": "soifoudihdhg"
-    },
-    {
-      "id": "bf04",
-      "email": "",
-      "password": ""
-    },
-    {
-      "id": "6aba",
-      "email": "sfosjfosjfj@email.com",
-      "password": "dhufhdughdg"
-    },
-    {
-      "id": "f983",
-      "token": 1715281470761,
-      "companyName": "Sol e Neve",
-      "name": "sdsfsf",
-      "email": "sfsfsfsfsfsf@email.com",
-      "password": "sfsfsf"
-    },
-    {
-      "id": "159a",
-      "email": "sfsfsfsfsfsf@email.com",
-      "password": "12345"
-    },
-    {
-      "id": "5e4c",
-      "token": 1715293148393,
-      "companyName": "Sol e Neve",
-      "name": "Daniel",
-      "email": "snfisnf@email.com",
-      "password": "12345"
-    },
-    {
-      "id": "2381",
-      "token": 1715293280519,
-      "companyName": "Sol e Neve",
-      "name": "Daniel",
-      "email": "snfisnf@email.com",
-      "password": "3232424"
-    },
-    {
-      "id": "5d6f",
-      "email": "snfisnf@email.com",
-      "password": "sfsfsf"
-    },
-    {
-      "id": "b103",
-      "email": "1231313141414@email.com",
-      "password": "2isnfjsnf"
+      "id": "5",
+      "dia": "25-05-2024",
+      "horario_inicial": "10:00",
+      "horario_final": "11:00",
+      "cliente": "João"
     }
   ]
 }

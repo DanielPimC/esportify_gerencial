@@ -52,7 +52,6 @@ function Home() {
       alert("Registrado com sucesso!");
       setEmail("");
       setSenha("");
-      setNome("");
       setMode("home");
     } catch (error) {
       console.error("Error:", error);

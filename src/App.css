@@ -27,6 +27,21 @@
   gap: 20px;
 }
 
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin-left: 200px;
+}
+
+.minhas-quadras {
+  text-decoration: underline;
+  font-size: 1.5em;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-left: 1%;
+}
+
 /* CSS RELACIONADO AO MENU LATERAL DE OPÇÕES */
 .seta-voltar {
   cursor: pointer;
@@ -78,39 +93,30 @@
   width: 100%;
 }
 
-/* CSS RELACIONADO AO BOTÃO DE ADICIONAR QUADRA */
-.button-container {
-  padding: 10px;
-  align-self: center;
+@media screen and (max-width: 480px) {
+  .menu-lateral {
+    width: 30vw;
+  }
 }
 
+/* CSS RELACIONADO AO BOTÃO DE ADICIONAR QUADRA */
 .btn-add-quadra {
   background-color: #838383;
   color: white;
   border-radius: 8px;
   padding: 10px;
-  width: 120px;
-  height: 120px;
+  width: 152px;
+  height: 31px;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background-color 0.3s ease;
   text-decoration: none;
   text-align: center;
-  margin-left: 200px;
+}
 
-  .plus {
-    font-size: 60px;
-    line-height: 1;
-    margin: 0;
-    padding: 0;
-  }
-
-  &:hover {
-    background-color: #6d6d6d;
-  }
+.btn-add-quadra:hover {
+  background-color: #6d6d6d;
 }
 
 /* CSS RELACIONADO AO FORMULÁRIO DE ADICIONAR QUADRA */
@@ -255,12 +261,6 @@
   background-color: #6d6d6d;
 }
 
-.sem-horarios {
-  margin-top: 10px;
-  width: 100%;
-  text-align: center;
-}
-
 /* Regras de mídia para responsividade */
 @media screen and (max-width: 768px) {
   .horarios-container {
@@ -403,7 +403,6 @@
   height: auto;
 }
 
-
 form {
   margin-bottom: 20px;
 }
@@ -504,4 +503,34 @@ input[type="number"] {
 
 .btn-delete:hover {
   background-color: #6d6d6d;
+}
+
+/* CSS RELACIONADO A TELA DE LISTAR HORÁRIOS MARCADOS */
+
+.listar-agendamentos {
+  margin-left: 220px;
+  padding: 20px;
+}
+
+.horarios-lista {
+  list-style-type: none;
+  padding: 0;
+}
+
+.horario-item {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px black solid;
+  border-radius: 8px;
+  background-color: #5f535331;
+}
+
+.horario-item p {
+  margin: 5px 0;
+}
+
+.sem-horarios {
+  text-align: center;
+  align-items: center;
+  padding: 20px;
 }
