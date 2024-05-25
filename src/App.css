@@ -378,6 +378,8 @@
   margin-top: 50px;
   margin-bottom: 30px;
   font-size: 1.5em;
+  color: #404040;
+  padding-bottom: 30px;
 }
 
 .img-esportify {
@@ -420,6 +422,28 @@ input[type="number"] {
   width: 80%;
   margin-bottom: 10px;
   padding: 10px;
+  border-radius: 10px;
+  border: 1px solid grey;
+  transition: width 0.1s ease-in, height 0.1s ease-in
+}
+input[type="text"]:hover,
+        input[type="email"]:hover,
+        input[type="password"]:hover,
+        input[type="number"]:hover {
+            box-shadow: 1px 0 2px rgba(0, 0, 0, 0.5);
+            outline: none;
+            width: 81%; 
+            height: 81%;
+}
+
+
+input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="password"]:focus,
+        input[type="number"]:focus {
+            border: 10px blue;
+            box-shadow: 1px 0 2px rgba(0, 0, 0, 0.5);
+            outline: none; 
 }
 
 .options {
@@ -428,17 +452,21 @@ input[type="number"] {
 }
 
 .btn-login {
-  padding: 10px 20px;
-  background-color: #838383;
+  width: 80%;
+  padding: 10px 20px 10px 20px;
+  background-color: #404040;
   color: #fff;
   border-radius: 8px;
   border: none;
   cursor: pointer;
   margin: 10px;
+  font-weight: bold;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
+
 .btn-login:hover {
-  background-color: #6d6d6d;
+  background-color: #838383;
 }
 
 .error-message {
@@ -533,4 +561,16 @@ input[type="number"] {
   text-align: center;
   align-items: center;
   padding: 20px;
+}
+
+.texto{
+    display: flex;
+    justify-content: center;
+}
+
+.cadastro-decoration{
+  text-decoration: underline;
+  cursor: pointer;
+  padding-left: 2px;
+  font-weight: bold;
 }
