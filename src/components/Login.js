@@ -6,7 +6,7 @@ import { BASE_URL } from "../services/api-connection";
 import Loading from "./Loading/Loading";
 
 function Home() {
-  const [mode, setMode] = useState("home");
+  const [mode, setMode] = useState("login");
   const id_complexo_esportivo = "018f9c32-21fb-73a4-aaed-bd90c017c9b3";
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
@@ -111,8 +111,7 @@ function Home() {
 
           {mode === "login" && (
             <form onSubmit={handleLoginSubmit}>
-              <h2>Login:</h2>
-              <input
+              <input className="email"
                 type="email"
                 placeholder="Email"
                 value={email}
@@ -120,6 +119,7 @@ function Home() {
                 required
               />
               <input
+                className="senha"
                 type="password"
                 placeholder="Senha"
                 value={senha}
@@ -127,9 +127,11 @@ function Home() {
                 required
               />
               <button type="submit" className="btn-login">
-                Entrar
+                ENTRAR
               </button>
-              {errorMessage && <p className="error-message">{errorMessage}</p>}
+
+              <div className="texto"><p>Não tem uma conta?</p> <p className="cadastro-decoration" onClick={() => setMode("register")}>Cadastre-se</p>
+              {errorMessage && <p className="error-message">{errorMessage}</p>}</div>
             </form>
           )}
 
