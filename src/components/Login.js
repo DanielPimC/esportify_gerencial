@@ -3,63 +3,16 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import { BASE_URL } from "../services/api-connection";
+import RightImage from "../assets/images/imagemGerencial.png";
+import LeftImage from "../assets/images/esportifyGerencial.png";
 import Loading from "./Loading/Loading";
 
 function Home() {
-  const [mode, setMode] = useState("login");
-  const id_complexo_esportivo = "018f9c32-21fb-73a4-aaed-bd90c017c9b3";
-  const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-
-  /*  const handleCnpjSubmit = async (e) => {
-    e.preventDefault();
-    setIsLoading(true);
-    try {
-      setErrorMessage('');
-      const response = await axios.get(`${BASE_URL}empresas?cnpj=${cnpj}`);
-      console.log(response.data[0]);
-      if (response.data[0]) {
-        //setCompanynome(response.data[0].nome);
-        setMode('register');
-      } else {
-        setErrorMessage('Empresa não encontrada.');
-      }
-      setCnpj('');
-    } catch (error) {
-      console.error('Error:', error);
-      setErrorMessage('Ocorreu um erro ao buscar a empresa.');
-    } finally {
-      setIsLoading(false);
-    }
-  };
-*/
-
-  const handleRegisterSubmit = async (e) => {
-    e.preventDefault();
-    setIsLoading(true);
-    try {
-      const response = await axios.post(`${BASE_URL}administrador/singup`, {
-        email,
-        senha,
-        nome,
-        id_complexo_esportivo,
-      });
-      console.log(response.data);
-      alert("Registrado com sucesso!");
-      setEmail("");
-      setSenha("");
-      setMode("home");
-    } catch (error) {
-      console.error("Error:", error);
-      setErrorMessage("Ocorreu um erro ao registrar.");
-    } finally {
-      setIsLoading(false);
-    }
-  };
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
@@ -69,6 +22,7 @@ function Home() {
         email,
         senha,
       });
+
       const token = response.data.token;
       const decodedToken = jwtDecode(token);
       const idSportsComplex = decodedToken.idSportsComplex;
@@ -89,7 +43,8 @@ function Home() {
       <div className="left-panel">
         <img
           //src="https://i.imgur.com/yybPDhp.png"
-          src="https://i.imgur.com/3yICB7X.png"
+          //src="https://i.imgur.com/3yICB7X.png"
+          src={LeftImage}
           className="img-esportify"
           alt="Esportify - Gerencial"
         ></img>
@@ -97,89 +52,46 @@ function Home() {
           <strong>Bem-vindo</strong> ao seu hub de controle e crescimento.
         </div>
         <div className="login-form-container">
-          {mode === "home" && (
-            <div className="options">
-              <h2>Escolha uma opção:</h2>
-              <button className="btn-login" onClick={() => setMode("register")}>
-                REGISTRO
-              </button>
-              <button className="btn-login" onClick={() => setMode("login")}>
-                LOGIN
-              </button>
+          <form onSubmit={handleLoginSubmit}>
+            <input
+              className="email"
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            <input
+              className="senha"
+              type="password"
+              placeholder="Senha"
+              value={senha}
+              onChange={(e) => setSenha(e.target.value)}
+              required
+            />
+            <button type="submit" className="btn-login">
+              ENTRAR
+            </button>
+
+            {errorMessage && <p className="error-message">{errorMessage}</p>}
+
+            <div className="texto">
+              <p>Não tem uma conta? </p>
+              <p
+                className="cadastro-decoration"
+                onClick={() => navigate("/register")}
+              >
+                Cadastre-se
+              </p>
             </div>
-          )}
-
-          {mode === "login" && (
-            <form onSubmit={handleLoginSubmit}>
-              <input className="email"
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-              <input
-                className="senha"
-                type="password"
-                placeholder="Senha"
-                value={senha}
-                onChange={(e) => setSenha(e.target.value)}
-                required
-              />
-              <button type="submit" className="btn-login">
-                ENTRAR
-              </button>
-
-              <div className="texto"><p>Não tem uma conta?</p> <p className="cadastro-decoration" onClick={() => setMode("register")}>Cadastre-se</p>
-              {errorMessage && <p className="error-message">{errorMessage}</p>}</div>
-            </form>
-          )}
-
-          {mode === "register" && (
-            <form onSubmit={handleRegisterSubmit}>
-              <h2>Registrar funcionário:</h2>
-              <input
-                type="text"
-                placeholder="Nome"
-                value={nome}
-                onChange={(e) => setNome(e.target.value)}
-                required
-              />
-              <input
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-              <input
-                type="password"
-                placeholder="Senha"
-                value={senha}
-                onChange={(e) => setSenha(e.target.value)}
-                required
-              />
-              <button type="submit" className="btn-login">
-                Registrar
-              </button>
-              {errorMessage && <p className="error-message">{errorMessage}</p>}
-            </form>
-          )}
-
-          {/*mode === 'cnpj' && (
-            <form onSubmit={handleCnpjSubmit}>
-              <h2>Digite o CNPJ:</h2>
-              <input type="text" className='input-login' value={cnpj} onChange={(e) => setCnpj(e.target.value)} required/>
-              <button type="submit" className='btn-login'>Enviar</button>
-              {errorMessage && <p className='error-message'>{errorMessage}</p>}
-            </form>
-          )} */}
+          </form>
         </div>
       </div>
       <div className="right-panel">
         <img
           //src="https://i.imgur.com/a4W0QOu.png"
-          src="https://i.imgur.com/mwsaGlE.png"
+          //src="https://i.imgur.com/mwsaGlE.png"
+          src={RightImage}
           alt="Imagem de início"
           className="img-panel"
         />

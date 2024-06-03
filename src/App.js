@@ -7,6 +7,7 @@ import ListarAgendamentos from './components/ListarAgendamentos'
 import NotFound from './components/NotFound'
 import GerenciarHorarios from './components/GerenciarHorarios';
 import Login from './components/Login';
+import Register from './components/Register/Register';
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
     <Router>
         <Routes>
           <Route path="/" exact element={<Login />} />
+          <Route path='/register' element={<Register />} />
           <Route path="/gerenciar-quadras" element={<GerenciarQuadras />} />
           <Route path="/gerenciar-horarios" element={<GerenciarHorarios />} />
           <Route path="/criar-quadra" element={<CriarQuadra />} />
