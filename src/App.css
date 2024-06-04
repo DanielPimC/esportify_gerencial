@@ -3,7 +3,12 @@
   src: url("./assets/fonts/Istok_Web/IstokWeb-Regular.ttf");
 }
 
-body {
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
   font-family: "IstokWeb";
 }
 
@@ -500,7 +505,7 @@ input[type="number"]:focus {
 }
 
 .btn-login:hover {
-  background-color: #838383;
+  background-color: #6d6d6d;
 }
 
 .error-message {
@@ -601,12 +606,20 @@ input[type="number"]:focus {
 .register-container {
   display: flex;
   height: 100vh;
-  background-color: #6d6d6d;
+  width: 100%;
+  background-color: #838383;
+} 
+
+.register-form-container {
+  align-items: center;
+  text-align: center;
 }
 
 .register-left {
   width: 40%;
   padding: 20px;
+  justify-content: center;
+  align-items: center;
   text-align: center;
 }
 
@@ -631,8 +644,15 @@ input[type="number"]:focus {
 
 .progress-steps {
   display: flex;
+  color: white;
+  align-items: center;
   justify-content: space-between;
   margin-top: 10px;
+  height: 10vh;
+  background: linear-gradient(to right, black, gray);
+  border-radius: 10px;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
 .progress-step {
@@ -642,14 +662,29 @@ input[type="number"]:focus {
 
 .progress-step.active {
   font-weight: bold;
+  text-decoration: underline;
+  color: white;
 }
 
-/*
-.btn-login {
-  background-color: #4caf50;
+.text-register {
   color: white;
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
+  padding: 70px 0px;
 }
-*/
+
+@media screen and (max-width: 480px) {
+  .register-left {
+    width: 20vw;
+    align-items: center;
+  }
+  .register-right {
+    width: 80%;
+  }
+  .progress-steps {
+    flex-direction: column;
+    height: auto;
+    padding: 20px;
+  }
+  .progress-bar {
+    display: none;
+  }
+}

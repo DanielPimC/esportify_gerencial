@@ -50,10 +50,10 @@ const Register = () => {
   const images = [ImageStep01, ImageStep02, ImageStep03, ImageStep04];
   const imagesAlt = ["Etapa 1 - CNPJ", "Etapa 2 - Usuário", "Etapa 3 - Endereço da Arena", "Etapa 4 - Conclusão"] 
   const stepDescriptions = [
-    <p>Vamos começar com o <strong>CNPJ</strong> da empresa</p>,
-    <p>Escolha um <strong>Email</strong> e uma <strong>Senha</strong> para entrar. </p>, 
-    <p>Digite o <strong>endereço</strong> do seu <strong>complexo esportivo</strong>. </p>,
-    <p>Cadastro <strong>concluído</strong></p>];
+    <p className='text-register'>Vamos começar com o <strong>CNPJ</strong> da empresa</p>,
+    <p className='text-register'>Escolha um <strong>Email</strong> e uma <strong>Senha</strong> para entrar. </p>, 
+    <p className='text-register'>Digite o <strong>endereço</strong> do seu <strong>complexo esportivo</strong>. </p>,
+    <p className='text-register'>Cadastro <strong>concluído</strong></p>];
 
   return (
     <div className="register-container">

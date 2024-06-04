@@ -36,7 +36,7 @@ const CourtLocationForm = ({
   }, [cep, handleChange]);
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className='register-form-container'>
       <h2>Dados da Arena</h2>
       <input
         type="text"
@@ -94,7 +94,7 @@ const CourtLocationForm = ({
         onChange={handleChange}
         required
       />
-      <button type="submit" className="btn-login">Registrar</button>
+      <button type="submit" className="btn-login">Concluir</button>
       {errorMessage && <p className="error-message">{errorMessage}</p>}
     </form>
   );
