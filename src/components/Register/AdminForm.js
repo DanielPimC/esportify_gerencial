@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AdminForm = ({ email, senha, confirmarSenha, handleChange, handleSubmit, errorMessage }) => (
+const AdminForm = ({ email, senha, confirmarSenha, handleChange, handleSubmit, errorMessage, handlePrevStep }) => (
   <form onSubmit={handleSubmit} className='register-form-container'>
     <h2>Usuário Administrador</h2>
     <input
@@ -27,8 +27,9 @@ const AdminForm = ({ email, senha, confirmarSenha, handleChange, handleSubmit, e
       onChange={handleChange}
       required
     />
-    <button type="submit" className="btn-login">Avançar</button>
     {errorMessage && <p className="error-message">{errorMessage}</p>}
+    <button type="submit" className="btn-login">Avançar</button>
+    <button onClick={handlePrevStep} className="btn-login">Voltar</button>
   </form>
 );
 

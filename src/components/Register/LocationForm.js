@@ -5,7 +5,7 @@ import Loading from '../Loading/Loading';
 
 const CourtLocationForm = ({
   cep, rua, bairro, numero, complemento, uf, cidade,
-  handleChange, handleSubmit, errorMessage
+  handleChange, handleSubmit, errorMessage, handlePrevStep
 }) => {
   const [isLoading, setIsLoading] = useState(false);
   const previousCep = useRef(cep);
@@ -94,8 +94,9 @@ const CourtLocationForm = ({
         onChange={handleChange}
         required
       />
-      <button type="submit" className="btn-login">Concluir</button>
       {errorMessage && <p className="error-message">{errorMessage}</p>}
+      <button type="submit" className="btn-login">Concluir</button>
+      <button onClick={handlePrevStep} className="btn-login">Voltar</button>
     </form>
   );
 };
