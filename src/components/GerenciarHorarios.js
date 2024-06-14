@@ -22,7 +22,7 @@ function GerenciarHorarios() {
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(6); // Quantidade de horários por página
+  const [itemsPerPage] = useState(6);
   const idQuadra = localStorage.getItem("idQuadra");
   const nomeQuadra = localStorage.getItem("nomeQuadra");
   const token = localStorage.getItem("token");

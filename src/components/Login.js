@@ -42,8 +42,6 @@ function Home() {
     <div className="container-login">
       <div className="left-panel">
         <img
-          //src="https://i.imgur.com/yybPDhp.png"
-          //src="https://i.imgur.com/3yICB7X.png"
           src={LeftImage}
           className="img-esportify"
           alt="Esportify - Gerencial"
@@ -70,7 +68,7 @@ function Home() {
               required
             />
             <button type="submit" className="btn-login">
-              ENTRAR
+              Entrar
             </button>
 
             {errorMessage && <p className="error-message">{errorMessage}</p>}
@@ -89,8 +87,6 @@ function Home() {
       </div>
       <div className="right-panel">
         <img
-          //src="https://i.imgur.com/a4W0QOu.png"
-          //src="https://i.imgur.com/mwsaGlE.png"
           src={RightImage}
           alt="Imagem de início"
           className="img-panel"

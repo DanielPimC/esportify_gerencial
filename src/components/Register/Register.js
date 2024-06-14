@@ -40,7 +40,7 @@ const Register = () => {
 
   const handleCnpjSubmit = async (e) => {
     e.preventDefault();
-    // Simulate API call
+    // API
     handleNextStep();
   };
 
@@ -51,13 +51,13 @@ const Register = () => {
       return;
     }
     setErrorMessage("");
-    // Simulate API call
+    // API
     handleNextStep();
   };
 
   const handleLocationSubmit = (e) => {
     e.preventDefault();
-    // Simulate API call
+    // API
     handleNextStep();
   };
 
