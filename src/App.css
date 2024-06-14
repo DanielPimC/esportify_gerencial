@@ -3,7 +3,8 @@
   src: url("./assets/fonts/Istok_Web/IstokWeb-Regular.ttf");
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   width: 100%;
@@ -107,6 +108,17 @@ html, body {
   width: 100%;
 }
 
+.btn-logout {
+  color: white;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-logout p {
+  margin-top: 2px;
+}
+
 @media screen and (max-width: 480px) {
   .menu-lateral {
     width: 30vw;
@@ -115,7 +127,7 @@ html, body {
 
 /* CSS RELACIONADO AO BOTÃO DE ADICIONAR QUADRA */
 .btn-add-quadra {
-  background-color: #838383;
+  background-color: #6d6d6d;
   color: white;
   border-radius: 8px;
   padding: 10px;
@@ -126,11 +138,12 @@ html, body {
   justify-content: center;
   cursor: pointer;
   text-decoration: none;
+  border: none;
   text-align: center;
 }
 
 .btn-add-quadra:hover {
-  background-color: #6d6d6d;
+  background-color: #838383;
 }
 
 /* CSS RELACIONADO AO FORMULÁRIO DE ADICIONAR QUADRA */
@@ -202,87 +215,141 @@ html, body {
 }
 
 /* CSS RELACIONADO AO GERENCIAR HORÁRIOS */
+.gerenciar-container {
+  display: flex;
+}
+
+.main-content {
+  margin-left: 200px;
+  padding: 20px;
+  width: calc(100% - 200px);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .gerenciar-horario {
   display: flex;
-  text-align: center;
-}
-
-.horarios-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
   align-items: center;
-  padding: 20px;
-  margin-left: 100px;
-}
-
-.horarios-list {
-  background-color: #ffffff;
-  border-radius: 8px;
-  padding: 10px 15px;
-  width: 90%;
-  justify-content: space-between;
-  border: 1px solid black;
-}
-
-.dia-details {
-  min-width: 20vw;
-  max-width: 200px;
-  margin: 10px;
-  background-color: #5f535331;
-  padding: 10px;
-  border-radius: 8px;
-  cursor: pointer;
-  overflow: hidden;
-}
-
-.dia-summary {
-  font-weight: bold;
-  cursor: pointer;
-  margin-bottom: 10px;
-}
-
-.horario-card {
-  display: block;
-  text-align: center;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  padding: 5px;
-  border: 1px solid black;
-  border-radius: 8px;
-}
-
-.horario-card p {
-  margin: 0;
-}
-
-.trash-can {
-  display: flex;
-  justify-content: flex-start;
 }
 
 .btn-add-horario {
-  padding: 8px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
   background-color: #838383;
   color: white;
+  border-radius: 8px;
+  border: none;
+  padding: 10px;
+  width: 152px;
+  height: 31px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .btn-add-horario:hover {
   background-color: #6d6d6d;
 }
 
-/* Regras de mídia para responsividade */
-@media screen and (max-width: 768px) {
-  .horarios-container {
-    margin-left: 20px;
-  }
-  .dia-details {
-    min-width: 30vw;
-  }
+.dias-semana {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+  padding: 5px;
+  border-radius: 8px;
+  font-size: 18px;
+  border-bottom: 1px solid #ddd;
+}
+
+.dias-semana span {
+  cursor: pointer;
+  padding: 5px 10px;
+  margin: 0 5px;
+  border: 1px solid black;
+  border-radius: 8px;
+  transition: color 0.3s, background-color 0.3s;
+}
+
+.dias-semana span:hover {
+  text-decoration: underline;
+}
+
+.dias-semana .selected {
+  color: white;
+  background-color: #404040;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+
+.horarios-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-top: none;
+  background-color: #fff;
+}
+
+.horario-card {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 10px;
+  width: calc(33.333% - 10px);
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.horario-card:hover {
+  background-color: #f1f1f1;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+.horario-info {
+  flex: 1;
+}
+
+.horario-info h3 {
+  text-decoration: underline;
+  margin-bottom: 2px;
+}
+
+.horario-info p {
+  margin: 0px;
+}
+
+.horario-actions {
+  display: flex;
+  gap: 5px;
+}
+
+.action-icon {
+  cursor: pointer;
+  color: #555;
+  transition: color 0.3s;
+}
+
+.action-icon:hover {
+  color: #000;
+}
+
+.sem-horarios {
+  padding: 10px;
+  width: 100%;
+  text-align: center;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-top: none;
 }
 
 /* CSS RELACIONADO AO MODAL DE ADICIONAR HORÁRIO */
@@ -573,7 +640,6 @@ input[type="number"]:focus {
 }
 
 /* CSS RELACIONADO A TELA DE LISTAR HORÁRIOS MARCADOS */
-
 .listar-agendamentos {
   margin-left: 220px;
   padding: 20px;
@@ -597,9 +663,39 @@ input[type="number"]:focus {
 }
 
 .sem-horarios {
+  padding: 10px;
+  width: 100%;
   text-align: center;
-  align-items: center;
-  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-top: none;
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.pagination button {
+  width: 150px;
+  height: 50px;
+  margin: 0 10px;
+  background-color: #6d6d6d;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, transform 0.2s;
+}
+
+.pagination button:hover {
+  background-color: #838383;
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 /* CSS RELACIONADO A TELA DE REGISTRO */
@@ -607,7 +703,7 @@ input[type="number"]:focus {
   display: flex;
   height: 100vh;
   width: 100%;
-} 
+}
 
 .register-form-container {
   align-items: center;

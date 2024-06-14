@@ -1,7 +1,12 @@
-import React from 'react';
+import React from "react";
 
 const ProgressBar = ({ step }) => {
-  const steps = ["CNPJ", "Usuário Administrador", "Dados da Arena", "Concluído"];
+  const steps = [
+    "CNPJ",
+    "Usuário Administrador",
+    "Dados da Arena",
+    "Concluído",
+  ];
   const progress = (step / (steps.length - 1)) * 100;
 
   return (
@@ -9,7 +14,10 @@ const ProgressBar = ({ step }) => {
       <div className="progress-bar" style={{ width: `${progress}%` }}></div>
       <div className="progress-steps">
         {steps.map((stepName, index) => (
-          <span key={index} className={`progress-step ${step === index ? 'active' : ''}`}>
+          <span
+            key={index}
+            className={`progress-step ${step === index ? "active" : ""}`}
+          >
             {stepName}
           </span>
         ))}

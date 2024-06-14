@@ -7,6 +7,8 @@ import { BASE_URL } from "../services/api-connection";
 import Loading from "./Loading/Loading";
 import MenuLateral from "./MenuLateral/MenuLateral";
 import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
+import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
 import AlarmIcon from "@mui/icons-material/Alarm";
 
 function GerenciarHorarios() {
@@ -16,9 +18,11 @@ function GerenciarHorarios() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [horarioParaExcluir, setHorarioParaExcluir] = useState(null);
-  const [diaSelecionado, setDiaSelecionado] = useState("");
+  const [diaSelecionado, setDiaSelecionado] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(6); // Quantidade de horários por página
   const idQuadra = localStorage.getItem("idQuadra");
   const nomeQuadra = localStorage.getItem("nomeQuadra");
   const token = localStorage.getItem("token");
@@ -40,7 +44,6 @@ function GerenciarHorarios() {
             headers: { Authorization: token },
           }),
         ]);
-        console.log(horariosResponse.data.times);
         setDiasSemana(diasResponse.data.dias_da_semana);
         setHorarios(horariosResponse.data.times);
       } catch (error) {
@@ -62,6 +65,7 @@ function GerenciarHorarios() {
 
   const toggleModal = (dia) => {
     setErrorMessage("");
+    setCurrentPage(1);
     setDiaSelecionado(dia);
     setIsModalOpen(!isModalOpen);
   };
@@ -73,9 +77,6 @@ function GerenciarHorarios() {
 
   const adicionarHorario = async (horario) => {
     try {
-      console.log(horario);
-      console.log(`ID DO DIA SELECIONADO: ${diaSelecionado.id}`);
-      console.log(horario);
       setIsLoading(true);
 
       await axios.post(
@@ -163,77 +164,143 @@ function GerenciarHorarios() {
       return <Loading isLoading={isLoading} />;
     }
 
-    return (
-      <div className="horarios-container">
-        {diasSemana.map((dia) => {
-          const horariosDoDia = horarios.filter(
-            (horario) => horario.id_dia_semana === dia.id
-          );
-          const horariosMarcados = horariosDoDia.filter(
-            (horario) => horario.status === "ATIVO"
-          );
+    if (!diaSelecionado) {
+      return null;
+    }
 
-          return (
-            <details key={dia.id} className="dia-details">
-              <summary className="dia-summary">{dia.desc_dia}</summary>
-              <div className="horarios-list">
-                {horariosMarcados.length > 0 ? (
-                  horariosMarcados.map((horario) => (
-                    <div key={horario.id} className="horario-card">
-                      <p>
-                        Horário Início: {horario.horario_inicial.slice(11, 16)}
-                      </p>
-                      <p>Horário Fim: {horario.horario_final.slice(11, 16)}</p>
-                      <p>Valor: R$ {horario.preco}</p>
-                      <DeleteIcon
-                        className="trash-can"
-                        onClick={() => toggleDeleteModal(horario)}
-                      />
-                    </div>
-                  ))
-                ) : (
-                  <div className="sem-horarios">
-                    <p>Sem horários definidos.</p>
-                  </div>
-                )}
-                <button
-                  onClick={() => toggleModal(dia)}
-                  className="btn-add-horario"
-                >
-                  Adicionar Horário
-                </button>
+    const horariosDoDia = horarios.filter(
+      (horario) => horario.id_dia_semana === diaSelecionado.id
+    );
+
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = horariosDoDia.slice(indexOfFirstItem, indexOfLastItem);
+
+    return (
+      <>
+        <div className="horarios-list">
+          {currentItems.length > 0 ? (
+            currentItems.map((horario) => (
+              <div key={horario.id} className="horario-card">
+                <div className="horario-info">
+                  <h3>Horário: </h3>
+                  <p>
+                    {horario.horario_inicial.slice(11, 16)} -{" "}
+                    {horario.horario_final.slice(11, 16)}
+                  </p>
+                  <h3>Preço: </h3>
+                  <p>R$ {horario.preco}</p>
+                </div>
+                <div className="horario-actions">
+                  <EditIcon className="action-icon" />
+                  <PowerSettingsNewIcon className="action-icon" />
+                  <DeleteIcon
+                    className="action-icon"
+                    onClick={() => toggleDeleteModal(horario)}
+                  />
+                </div>
               </div>
-            </details>
-          );
-        })}
-      </div>
+            ))
+          ) : (
+            <div className="sem-horarios">
+              <p>Sem horários definidos.</p>
+            </div>
+          )}
+        </div>
+        <div className="pagination">
+          <button onClick={prevPage} disabled={currentPage === 1}>
+            Página anterior
+          </button>
+          <button
+            onClick={nextPage}
+            disabled={
+              indexOfLastItem >= horariosDoDia.length ||
+              currentItems.length === 0
+            }
+          >
+            Próxima página
+          </button>
+        </div>
+      </>
     );
   };
 
+  const nextPage = () => {
+    setCurrentPage(currentPage + 1);
+  };
+
+  const prevPage = () => {
+    setCurrentPage(currentPage - 1);
+  };
+
   return (
-    <div className="horarios-container">
+    <div className="gerenciar-container">
       <MenuLateral />
-      <h2 className="gerenciar-horario">
-        <AlarmIcon style={{ padding: "5px" }} />
-        Gerenciar Horário - {nomeQuadra}
-      </h2>
-      {renderizarHorarios()}
-      {isModalOpen && (
-        <AdicionarHorarioModal
-          onClose={() => toggleModal("")}
-          onAddHorario={adicionarHorario}
-          dia={diaSelecionado}
-          errorMessage={errorMessage}
-        />
-      )}
-      {isDeleteModalOpen && (
-        <ConfirmarExclusaoModal
-          open={isDeleteModalOpen}
-          onClose={() => toggleDeleteModal()}
-          onConfirm={excluirHorario}
-          horario={horarioParaExcluir}
-        />
-      )}
+      <div className="main-content">
+        <div className="header">
+          <h2 className="gerenciar-horario">
+            <AlarmIcon style={{ padding: "5px" }} />
+            Gerenciar Horário - {nomeQuadra}
+          </h2>
+          <div
+            onClick={() => diaSelecionado && toggleModal(diaSelecionado)}
+            className="btn-add-horario"
+            disabled={!diaSelecionado}
+          >
+            + Adicionar Horário
+          </div>
+        </div>
+        <div className="dias-semana">
+          {diasSemana.map((dia, index) => (
+            <span
+              key={dia.id}
+              className={
+                diaSelecionado && diaSelecionado.id === dia.id ? "selected" : ""
+              }
+              onClick={() => {
+                setErrorMessage("");
+                setCurrentPage(1);
+                setDiaSelecionado(dia);
+              }}
+            >
+              {dia.desc_dia
+                .replace("SEG", "Segunda-feira")
+                .replace("TER", "Terça-feira")
+                .replace("QUA", "Quarta-feira")
+                .replace("QUI", "Quinta-feira")
+                .replace("SEX", "Sexta-feira")
+                .replace("SAB", "Sábado")
+                .replace("DOM", "Domingo")}
+              {index < diasSemana.length - 1}
+            </span>
+          ))}
+        </div>
+        {renderizarHorarios()}
+        {isModalOpen && (
+          <AdicionarHorarioModal
+            onClose={() => toggleModal(null)}
+            onAddHorario={adicionarHorario}
+            dia={diaSelecionado}
+            errorMessage={errorMessage}
+          />
+        )}
+        {isModalOpen && (
+          <AdicionarHorarioModal
+            onClose={() => toggleModal(null)}
+            onAddHorario={adicionarHorario}
+            dia={diaSelecionado}
+            errorMessage={errorMessage}
+          />
+        )}
+        {isDeleteModalOpen && (
+          <ConfirmarExclusaoModal
+            open={isDeleteModalOpen}
+            onClose={() => toggleDeleteModal()}
+            onConfirm={excluirHorario}
+            horario={horarioParaExcluir}
+          />
+        )}
+      </div>
     </div>
   );
 }

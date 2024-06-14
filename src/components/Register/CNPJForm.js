@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
 const CNPJForm = ({ cnpj, handleChange, handleSubmit, errorMessage }) => (
-  <form onSubmit={handleSubmit} className='register-form-container'>
+  <form onSubmit={handleSubmit} className="register-form-container">
     <h2>Digite o CNPJ:</h2>
     <input
       type="text"
@@ -11,7 +11,9 @@ const CNPJForm = ({ cnpj, handleChange, handleSubmit, errorMessage }) => (
       onChange={handleChange}
       required
     />
-    <button type="submit" className="btn-login">Avançar</button>
+    <button type="submit" className="btn-login">
+      Avançar
+    </button>
     {errorMessage && <p className="error-message">{errorMessage}</p>}
   </form>
 );

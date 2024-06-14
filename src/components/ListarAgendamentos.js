@@ -8,6 +8,8 @@ import Loading from "./Loading/Loading";
 function ListarAgendamentos() {
   const [horarios, setHorarios] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(4);
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
 
@@ -47,22 +49,49 @@ function ListarAgendamentos() {
     }
 
     if (horarios.length === 0) {
-      return <p className="sem-horarios">Não há horários marcados.</p>;
+      return (
+        <p className="sem-horarios-agendados">Não há horários marcados.</p>
+      );
     }
 
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = horarios.slice(indexOfFirstItem, indexOfLastItem);
+
     return (
-      <ul className="horarios-lista">
-        {horarios.map((horario) => (
-          <li key={horario.id} className="horario-item">
-            <p>Cliente: {horario.cliente}</p>
-            <p>Dia: {horario.dia}</p>
-            <p>
-              Horário: De {horario.horario_inicial} às {horario.horario_final}
-            </p>
-          </li>
-        ))}
-      </ul>
+      <div>
+        <ul className="horarios-lista">
+          {currentItems.map((horario) => (
+            <li key={horario.id} className="horario-item">
+              <p>Cliente: {horario.cliente}</p>
+              <p>Dia: {horario.dia}</p>
+              <p>
+                Horário: De {horario.horario_inicial} às {horario.horario_final}
+              </p>
+            </li>
+          ))}
+        </ul>
+        <div className="pagination">
+          <button onClick={prevPage} disabled={currentPage === 1}>
+            Anterior
+          </button>
+          <button
+            onClick={nextPage}
+            disabled={indexOfLastItem >= horarios.length}
+          >
+            Próxima
+          </button>
+        </div>
+      </div>
     );
+  };
+
+  const nextPage = () => {
+    setCurrentPage(currentPage + 1);
+  };
+
+  const prevPage = () => {
+    setCurrentPage(currentPage - 1);
   };
 
   return (

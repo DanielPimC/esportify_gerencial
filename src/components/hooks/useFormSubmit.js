@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import axios from 'axios';
+import { useState } from "react";
+import axios from "axios";
 
 export const useFormSubmit = (url, initialState) => {
   const [data, setData] = useState(initialState);
@@ -31,6 +31,6 @@ export const useFormSubmit = (url, initialState) => {
     isLoading,
     errorMessage,
     handleChange,
-    handleSubmit
+    handleSubmit,
   };
 };

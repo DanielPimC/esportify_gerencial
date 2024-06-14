@@ -1,14 +1,20 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import SportsIcon from '@mui/icons-material/Sports';
-import PlaylistAddCheckIcon from '@mui/icons-material/PlaylistAddCheck';
+import SportsIcon from "@mui/icons-material/Sports";
+import PlaylistAddCheckIcon from "@mui/icons-material/PlaylistAddCheck";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 const MenuLateral = () => {
   const navigate = useNavigate();
 
   const handleVoltar = () => {
     navigate(-1);
+  };
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    navigate("/");
   };
 
   return (
@@ -26,6 +32,10 @@ const MenuLateral = () => {
           Listar Agendamentos
         </li>
       </ul>
+      <div className="btn-logout" onClick={() => logout()}>
+        <LogoutIcon />
+        <p>Sair</p>
+      </div>
     </div>
   );
 };

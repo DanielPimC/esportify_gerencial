@@ -21,7 +21,17 @@ function AdicionarHorarioModal({ onClose, onAddHorario, dia, errorMessage }) {
   return (
     <div className="modal-overlay">
       <div className="modal-content">
-        <h2>Adicionar Horário - {dia.desc_dia}</h2>
+        <h2>
+          Adicionar Horário -{" "}
+          {dia.desc_dia
+            .replace("SEG", "Segunda-feira")
+            .replace("TER", "Terça-feira")
+            .replace("QUA", "Quarta-feira")
+            .replace("QUI", "Quinta-feira")
+            .replace("SEX", "Sexta-feira")
+            .replace("SAB", "Sábado")
+            .replace("DOM", "Domingo")}
+        </h2>
         <form onSubmit={handleSubmit}>
           <div className="input-group-modal">
             <label>Horário Início:</label>
