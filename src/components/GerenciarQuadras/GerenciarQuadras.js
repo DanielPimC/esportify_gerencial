@@ -1,23 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { Route, Routes, Link, useNavigate } from "react-router-dom";
 import Quadra from "./Quadra";
 import CriarQuadra from "./CriarQuadra";
-import Loading from "./Loading/Loading";
-import MenuLateral from "./MenuLateral/MenuLateral";
+import Loading from "../Loading/Loading";
+import MenuLateral from "../MenuLateral/MenuLateral";
 import axios from "axios";
-import { BASE_URL } from "../services/api-connection";
+import { BASE_URL } from "../../services/api-connection";
 
 function GerenciarQuadras() {
   const [isLoading, setIsLoading] = useState(true);
   const [quadras, setQuadras] = useState([]);
-  const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const token = localStorage.getItem("token");
 
-  if (!token) {
-    navigate("/");
-  }
-
   useEffect(() => {
+    /*if (!token) {
+    navigate("/");
+    }*/
     const fetchQuadras = async () => {
       try {
         const response = await axios.get(`${BASE_URL}quadra`, {
@@ -66,24 +64,29 @@ function GerenciarQuadras() {
     );
   };
 
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <div>
       <MenuLateral />
       <div>
         <div className="button-container">
           <p className="minhas-quadras">Minhas quadras:</p>
-          <Link to="/criar-quadra" className="btn-add-quadra">
+          <div onClick={openModal} className="btn-add-quadra">
             <p>+ Adicionar quadra</p>
-          </Link>
+          </div>
         </div>
         <div className="quadras-container">{renderizarQuadras()}</div>
       </div>
-      <Routes>
-        <Route
-          path="/criar-quadra"
-          element={<CriarQuadra onAddQuadra={adicionarQuadra} />}
-        />
-      </Routes>
+      {isModalOpen && (
+        <CriarQuadra onAddQuadra={adicionarQuadra} onClose={closeModal} />
+      )}
     </div>
   );
 }

@@ -53,7 +53,7 @@ const CourtLocationForm = ({
 
   return (
     <form onSubmit={handleSubmit} className="register-form-container">
-      <h2>Dados da Arena</h2>
+      <h2>Dados do Complexo Esportivo</h2>
       <input
         type="text"
         name="cep"

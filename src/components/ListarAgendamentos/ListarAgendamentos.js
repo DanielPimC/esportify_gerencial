@@ -1,21 +1,19 @@
 import React, { useEffect, useState } from "react";
-import MenuLateral from "./MenuLateral/MenuLateral";
-import { BASE_URL_JSON } from "../services/api-connection";
+import MenuLateral from "../MenuLateral/MenuLateral";
+import { BASE_URL_JSON } from "../../services/api-connection";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import Loading from "./Loading/Loading";
+import Loading from "../Loading/Loading";
 
 function ListarAgendamentos() {
   const [horarios, setHorarios] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(4);
-  const navigate = useNavigate();
   const token = localStorage.getItem("token");
 
-  if (!token) {
+  /*if (!token) {
     navigate("/");
-  }
+  }*/
 
   useEffect(() => {
     const fetchHorarios = async () => {
@@ -73,13 +71,13 @@ function ListarAgendamentos() {
         </ul>
         <div className="pagination">
           <button onClick={prevPage} disabled={currentPage === 1}>
-            Anterior
+            Página anterior
           </button>
           <button
             onClick={nextPage}
             disabled={indexOfLastItem >= horarios.length}
           >
-            Próxima
+            Próxima página
           </button>
         </div>
       </div>

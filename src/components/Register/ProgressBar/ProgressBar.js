@@ -2,9 +2,9 @@ import React from "react";
 
 const ProgressBar = ({ step }) => {
   const steps = [
-    "CNPJ",
+    "Dados da empresa ",
     "Usuário Administrador",
-    "Dados da Arena",
+    "Dados do Complexo Esportivo",
     "Concluído",
   ];
   const progress = (step / (steps.length - 1)) * 100;

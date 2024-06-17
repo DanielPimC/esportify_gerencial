@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
-import { BASE_URL } from "../services/api-connection";
-import RightImage from "../assets/images/imagemGerencial.png";
-import LeftImage from "../assets/images/esportifyGerencial.png";
-import Loading from "./Loading/Loading";
+import { BASE_URL } from "../../services/api-connection";
+import RightImage from "../../assets/images/imagemGerencial.png";
+import LeftImage from "../../assets/images/esportifyGerencial.png";
+import Loading from "../Loading/Loading";
 
 function Home() {
   const [email, setEmail] = useState("");

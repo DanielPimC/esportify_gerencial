@@ -2,7 +2,7 @@ import React from "react";
 import CheckIcon from "@mui/icons-material/Check";
 import ClearIcon from "@mui/icons-material/Clear";
 
-const ConfirmarExclusaoModal = ({ open, onClose, onConfirm, horario }) => {
+const ConfirmarExclusaoModal = ({ onClose, onConfirm, horario }) => {
   return (
     <div className="modal-overlay-delete">
       <div className="modal-content-delete">
@@ -10,7 +10,8 @@ const ConfirmarExclusaoModal = ({ open, onClose, onConfirm, horario }) => {
         <p className="modal-description-delete">
           Você tem certeza que deseja excluir o horário das{" "}
           {horario.horario_inicial.slice(11, 16)} às{" "}
-          {horario.horario_final.slice(11, 16)}?
+          {horario.horario_final.slice(11, 16)}? Você pode apenas desativar
+          temporariamente.
         </p>
         <div className="modal-buttons-delete">
           <button className="btn-delete" onClick={onConfirm}>

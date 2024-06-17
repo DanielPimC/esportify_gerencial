@@ -3,9 +3,11 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import AdicionarHorarioModal from "./AdicionarHorarioModal";
 import ConfirmarExclusaoModal from "./ConfirmarExclusaoModal";
-import { BASE_URL } from "../services/api-connection";
-import Loading from "./Loading/Loading";
-import MenuLateral from "./MenuLateral/MenuLateral";
+import DesativarHorarioModal from "./DesativarHorarioModal";
+import AlterarHorarioModal from "./AlterarHorarioModal";
+import { BASE_URL } from "../../services/api-connection";
+import Loading from "../Loading/Loading";
+import MenuLateral from "../MenuLateral/MenuLateral";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
@@ -17,7 +19,10 @@ function GerenciarHorarios() {
   const [diasSemana, setDiasSemana] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isDesativarModalOpen, setIsDesativarModalOpen] = useState(false);
+  const [isAlterarModalOpen, setIsAlterarModalOpen] = useState(false);
   const [horarioParaExcluir, setHorarioParaExcluir] = useState(null);
+  const [horarioParaAlterar, setHorarioParaAlterar] = useState(null);
   const [diaSelecionado, setDiaSelecionado] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(true);
@@ -28,10 +33,10 @@ function GerenciarHorarios() {
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    if (!token || !idQuadra) {
+    /*if (!token || !idQuadra) {
       navigate("/");
       return;
-    }
+    }*/
 
     const fetchData = async () => {
       try {
@@ -73,6 +78,16 @@ function GerenciarHorarios() {
   const toggleDeleteModal = (horario) => {
     setHorarioParaExcluir(horario);
     setIsDeleteModalOpen(!isDeleteModalOpen);
+  };
+
+  const toggleDesativarModal = (horario) => {
+    setHorarioParaExcluir(horario);
+    setIsDesativarModalOpen(!isDesativarModalOpen);
+  };
+
+  const toggleAlterarModal = (horario) => {
+    setHorarioParaAlterar(horario);
+    setIsAlterarModalOpen(!isAlterarModalOpen);
   };
 
   const adicionarHorario = async (horario) => {
@@ -159,6 +174,35 @@ function GerenciarHorarios() {
     }
   };
 
+  const desativarHorario = async (horario) => {
+    try {
+      setIsLoading(true);
+      // Implementar lógica para desativar horário
+      // Aqui você poderia enviar uma requisição para desativar temporariamente o horário
+      // por exemplo, com uma requisição PATCH ou PUT para um endpoint adequado.
+      console.log("Desativar horário:", horario);
+    } catch (error) {
+      console.error("Erro ao desativar horário:", error);
+    } finally {
+      setIsLoading(false);
+      toggleDesativarModal(null);
+    }
+  };
+
+  const alterarHorario = async (horario, novosDados) => {
+    try {
+      setIsLoading(true);
+      // Implementar lógica para alterar horário
+      // Aqui você poderia enviar uma requisição PUT para atualizar os dados do horário
+      console.log("Alterar horário:", horario, novosDados);
+    } catch (error) {
+      console.error("Erro ao alterar horário:", error);
+    } finally {
+      setIsLoading(false);
+      toggleAlterarModal(null);
+    }
+  };
+
   const renderizarHorarios = () => {
     if (isLoading) {
       return <Loading isLoading={isLoading} />;
@@ -192,8 +236,14 @@ function GerenciarHorarios() {
                   <p>R$ {horario.preco}</p>
                 </div>
                 <div className="horario-actions">
-                  <EditIcon className="action-icon" />
-                  <PowerSettingsNewIcon className="action-icon" />
+                  <EditIcon
+                    className="action-icon"
+                    onClick={() => toggleAlterarModal(horario)}
+                  />
+                  <PowerSettingsNewIcon
+                    className="action-icon"
+                    onClick={() => toggleDesativarModal(horario)}
+                  />
                   <DeleteIcon
                     className="action-icon"
                     onClick={() => toggleDeleteModal(horario)}
@@ -284,20 +334,26 @@ function GerenciarHorarios() {
             errorMessage={errorMessage}
           />
         )}
-        {isModalOpen && (
-          <AdicionarHorarioModal
-            onClose={() => toggleModal(null)}
-            onAddHorario={adicionarHorario}
-            dia={diaSelecionado}
-            errorMessage={errorMessage}
-          />
-        )}
         {isDeleteModalOpen && (
           <ConfirmarExclusaoModal
             open={isDeleteModalOpen}
             onClose={() => toggleDeleteModal()}
             onConfirm={excluirHorario}
             horario={horarioParaExcluir}
+          />
+        )}
+        {isDesativarModalOpen && (
+          <DesativarHorarioModal
+            onClose={() => toggleDesativarModal()}
+            onDesativar={desativarHorario}
+            horario={horarioParaExcluir}
+          />
+        )}
+        {isAlterarModalOpen && (
+          <AlterarHorarioModal
+            onClose={() => toggleAlterarModal()}
+            onAlterar={alterarHorario}
+            horario={horarioParaAlterar}
           />
         )}
       </div>

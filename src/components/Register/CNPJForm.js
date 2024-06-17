@@ -1,6 +1,7 @@
 import React from "react";
 
 const CNPJForm = ({ cnpj, handleChange, handleSubmit, errorMessage }) => (
+  
   <form onSubmit={handleSubmit} className="register-form-container">
     <h2>Digite o CNPJ:</h2>
     <input

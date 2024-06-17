@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import SportsIcon from "@mui/icons-material/Sports";
 import PlaylistAddCheckIcon from "@mui/icons-material/PlaylistAddCheck";
+import ContentPasteIcon from '@mui/icons-material/ContentPaste';
 import LogoutIcon from "@mui/icons-material/Logout";
 
 const MenuLateral = () => {
@@ -26,6 +27,10 @@ const MenuLateral = () => {
         <li onClick={() => navigate("/gerenciar-quadras")}>
           <SportsIcon />
           Gerenciar Quadras
+        </li>
+        <li onClick={() => navigate("/gerenciar-solicitacoes")}>
+          <ContentPasteIcon />
+          Gerenciar Solicitações
         </li>
         <li onClick={() => navigate("/listar-agendamentos")}>
           <PlaylistAddCheckIcon />

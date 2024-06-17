@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import axios from "axios";
+import Loading from "../Loading/Loading";
 import ProgressBar from "./ProgressBar/ProgressBar";
 import CNPJForm from "./CNPJForm";
 import AdminForm from "./AdminForm";
 import CourtLocationForm from "./LocationForm";
 import Completion from "./Completion";
+import { BASE_URL } from "../../services/api-connection";
 import ImageStep01 from "../../assets/images/step1.png";
 import ImageStep02 from "../../assets/images/step2.png";
 import ImageStep03 from "../../assets/images/step3.png";
@@ -12,6 +15,7 @@ import ImageStep04 from "../../assets/images/step4.png";
 const Register = () => {
   const [step, setStep] = useState(0);
   const [cnpj, setCnpj] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [adminData, setAdminData] = useState({
     email: "",
     senha: "",
@@ -40,8 +44,18 @@ const Register = () => {
 
   const handleCnpjSubmit = async (e) => {
     e.preventDefault();
-    // API
-    handleNextStep();
+    try{
+      setIsLoading(true);
+      const response = await axios.get(`${BASE_URL}/cnpj/${cnpj}`)
+      if(response.includes("complexo esportivo")){
+        setErrorMessage("Este CNPJ já possui um Complexo Esportivo vinculado.")
+      }
+      handleNextStep();
+    }catch(error){
+      console.log(error)
+    }finally{
+      setIsLoading(false);
+    }
   };
 
   const handleAdminSubmit = (e) => {
@@ -50,12 +64,10 @@ const Register = () => {
       setErrorMessage("As senhas são diferentes.");
       return;
     }
-    setErrorMessage("");
-    // API
     handleNextStep();
   };
 
-  const handleLocationSubmit = (e) => {
+  const handleCompanySubmit = (e) => {
     e.preventDefault();
     // API
     handleNextStep();
@@ -68,9 +80,9 @@ const Register = () => {
 
   const images = [ImageStep01, ImageStep02, ImageStep03, ImageStep04];
   const imagesAlt = [
-    "Etapa 1 - CNPJ",
+    "Etapa 1 - Dados da empresa",
     "Etapa 2 - Usuário",
-    "Etapa 3 - Endereço da Arena",
+    "Etapa 3 - Endereço do Complexo Esportivo",
     "Etapa 4 - Conclusão",
   ];
   const stepDescriptions = [
@@ -121,11 +133,12 @@ const Register = () => {
           <CourtLocationForm
             {...locationData}
             handleChange={handleLocationChange}
-            handleSubmit={handleLocationSubmit}
+            handleSubmit={handleCompanySubmit}
             errorMessage={errorMessage}
             handlePrevStep={handlePrevStep}
           />
         )}
+        {isLoading && <Loading isLoading={isLoading} />}
         {step === 3 && <Completion />}
       </div>
     </div>

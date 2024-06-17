@@ -140,13 +140,14 @@ body {
   text-decoration: none;
   border: none;
   text-align: center;
+  transition: background-color 0.3s ease-in-out;
 }
 
 .btn-add-quadra:hover {
   background-color: #838383;
 }
 
-/* CSS RELACIONADO AO FORMULÁRIO DE ADICIONAR QUADRA */
+/* CSS RELACIONADO AO MODAL DE ADICIONAR QUADRA */
 .quadra-form-container {
   width: 100%;
   max-width: 600px;
@@ -188,18 +189,18 @@ body {
 }
 
 .btn-submit {
-  background-color: #838383;
+  background-color: #6d6d6d;
   color: white;
   width: 40vh;
   border: none;
   padding: 10px 20px;
   border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease-in-out;
 }
 
 .btn-submit:hover {
-  background-color: #6d6d6d;
+  background-color: #838383;
 }
 
 /* CSS RELACIONADO AO BOTÃO DE GERENCIAR HORÁRIO DA QUADRA */
@@ -237,7 +238,7 @@ body {
 }
 
 .btn-add-horario {
-  background-color: #838383;
+  background-color: #6d6d6d;
   color: white;
   border-radius: 8px;
   border: none;
@@ -250,11 +251,11 @@ body {
   cursor: pointer;
   text-decoration: none;
   text-align: center;
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color 0.3s ease-in-out;
 }
 
 .btn-add-horario:hover {
-  background-color: #6d6d6d;
+  background-color: #838383;
 }
 
 .dias-semana {
@@ -408,12 +409,13 @@ body {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  background-color: #838383;
+  background-color: #6d6d6d;
   color: white;
+  transition: background-color 0.3s ease-in-out;
 }
 
 .btn-modal:hover {
-  background-color: #6d6d6d;
+  background-color: #838383;
 }
 
 /* CSS RELACIONADO AO LOADING */
@@ -534,6 +536,7 @@ input[type="number"] {
   border: 1px solid grey;
   transition: width 0.1s ease-in, height 0.1s ease-in;
 }
+
 input[type="text"]:hover,
 input[type="email"]:hover,
 input[type="password"]:hover,
@@ -561,18 +564,18 @@ input[type="number"]:focus {
 .btn-login {
   width: 80%;
   padding: 10px 20px 10px 20px;
-  background-color: #404040;
+  background-color: #6d6d6d;
   color: #fff;
   border-radius: 8px;
   border: none;
   cursor: pointer;
   margin: 10px;
   font-weight: bold;
-  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out;
 }
 
 .btn-login:hover {
-  background-color: #6d6d6d;
+  background-color: #838383;
 }
 
 .error-message {
@@ -628,15 +631,16 @@ input[type="number"]:focus {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  background-color: #838383;
+  background-color: #6d6d6d;
   color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: background-color 0.3s ease-in-out;
 }
 
 .btn-delete:hover {
-  background-color: #6d6d6d;
+  background-color: #838383;
 }
 
 /* CSS RELACIONADO A TELA DE LISTAR HORÁRIOS MARCADOS */
@@ -772,15 +776,143 @@ input[type="number"]:focus {
     width: 20vw;
     align-items: center;
   }
+
   .register-right {
     width: 80%;
   }
+
   .progress-steps {
     flex-direction: column;
     height: auto;
     padding: 20px;
   }
+
   .progress-bar {
     display: none;
   }
+}
+
+/* CSS RELACIONADO A PÁGINA DE SOLICITAÇÕES */
+.gerenciar-container-solicitacoes {
+  display: flex;
+}
+
+.main-content-solicitacoes {
+  flex: 1;
+  padding: 20px;
+  margin-left: 200px;
+}
+
+.header-solicitacoes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.options-solicitacoes {
+  display: flex;
+  gap: 20px;
+}
+
+.options-solicitacoes span {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid black;
+  transition: background-color 0.3s ease;
+}
+
+.options-solicitacoes span.selected {
+  color: white;
+  background-color: #838383;
+}
+
+.solicitacoes-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-top: none;
+  background-color: #fff;
+  width: 100%;
+}
+
+.solicitacoes-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.solicitacao-card {
+  position: relative;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  width: 300px;
+  height: 200px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.solicitacao-card:hover {
+  background-color: #f1f1f1;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+.solicitacao-info {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+}
+
+.solicitacao-info p {
+  margin: 5px 0;
+}
+
+.solicitacao-actions {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.solicitacao-actions button {
+  padding: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background-color: transparent;
+  color: #6d6d6d;
+  border: none;
+  transition: color 0.3s ease;
+}
+
+.solicitacao-actions button:hover {
+  color: #838383;
+}
+
+.sem-solicitacoes {
+  padding: 10px;
+  width: 100%;
+  text-align: center;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-top: none;
+}
+
+.solicitacao-actions button:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
 }
