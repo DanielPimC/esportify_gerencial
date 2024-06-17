@@ -23,7 +23,6 @@ function GerenciarQuadras() {
             Authorization: token,
           },
         });
-        console.log(response.data.courts);
         setQuadras(response.data.courts);
       } catch (error) {
         if (

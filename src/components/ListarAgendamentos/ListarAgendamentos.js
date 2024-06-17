@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import MenuLateral from "../MenuLateral/MenuLateral";
-import { BASE_URL_JSON } from "../../services/api-connection";
+import { BASE_URL } from "../../services/api-connection";
 import axios from "axios";
 import Loading from "../Loading/Loading";
 
@@ -18,7 +18,14 @@ function ListarAgendamentos() {
   useEffect(() => {
     const fetchHorarios = async () => {
       try {
-        const response = await axios.get(`${BASE_URL_JSON}horarios`);
+
+        const token = localStorage.getItem("token");  
+        const quadra = localStorage.getItem("idQuadra")
+        const response = await axios.get(`${BASE_URL}quadra/alugueis/${quadra}`, {
+          headers: {
+            Authorization: token
+          }
+        });
         setHorarios(response.data);
         console.log(response.data);
       } catch (error) {
@@ -52,34 +59,19 @@ function ListarAgendamentos() {
       );
     }
 
-    const indexOfLastItem = currentPage * itemsPerPage;
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = horarios.slice(indexOfFirstItem, indexOfLastItem);
-
     return (
       <div>
         <ul className="horarios-lista">
-          {currentItems.map((horario) => (
-            <li key={horario.id} className="horario-item">
-              <p>Cliente: {horario.cliente}</p>
-              <p>Dia: {horario.dia}</p>
+          {horarios.rentTimes.map((horario) => (
+            <li key={1} className="horario-item">
+              <p>Cliente: {horario.usuario.nome}</p>
+              <p>Dia: {horario.data}</p>
               <p>
-                Horário: De {horario.horario_inicial} às {horario.horario_final}
+                Horário: De {horario.horario_aluguel.horario_inicial} às {horario.horario_aluguel.horario_final}
               </p>
             </li>
           ))}
         </ul>
-        <div className="pagination">
-          <button onClick={prevPage} disabled={currentPage === 1}>
-            Página anterior
-          </button>
-          <button
-            onClick={nextPage}
-            disabled={indexOfLastItem >= horarios.length}
-          >
-            Próxima página
-          </button>
-        </div>
       </div>
     );
   };
