@@ -177,10 +177,7 @@ function GerenciarHorarios() {
   const desativarHorario = async (horario) => {
     try {
       setIsLoading(true);
-      // Implementar lógica para desativar horário
-      // Aqui você poderia enviar uma requisição para desativar temporariamente o horário
-      // por exemplo, com uma requisição PATCH ou PUT para um endpoint adequado.
-      console.log("Desativar horário:", horario);
+      // Lógica para desativar horário
     } catch (error) {
       console.error("Erro ao desativar horário:", error);
     } finally {
@@ -192,9 +189,7 @@ function GerenciarHorarios() {
   const alterarHorario = async (horario, novosDados) => {
     try {
       setIsLoading(true);
-      // Implementar lógica para alterar horário
-      // Aqui você poderia enviar uma requisição PUT para atualizar os dados do horário
-      console.log("Alterar horário:", horario, novosDados);
+      // Lógica para alterar horário
     } catch (error) {
       console.error("Erro ao alterar horário:", error);
     } finally {
