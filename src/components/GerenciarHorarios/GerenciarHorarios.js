@@ -33,10 +33,10 @@ function GerenciarHorarios() {
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    /*if (!token || !idQuadra) {
-      navigate("/");
-      return;
-    }*/
+    // if (!token || !idQuadra) {
+    //   navigate("/");
+    //   return;
+    // }
 
     const fetchData = async () => {
       try {
@@ -50,6 +50,7 @@ function GerenciarHorarios() {
           }),
         ]);
         setDiasSemana(diasResponse.data.dias_da_semana);
+        console.log(horariosResponse)
         setHorarios(horariosResponse.data.times);
       } catch (error) {
         if (
@@ -158,6 +159,7 @@ function GerenciarHorarios() {
         { headers: { Authorization: token } }
       );
       setHorarios(response.data.times);
+      console.log(response.data)
       toggleDeleteModal(null);
     } catch (error) {
       if (

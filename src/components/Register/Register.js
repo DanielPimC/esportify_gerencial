@@ -45,11 +45,11 @@ const Register = () => {
   const handleCnpjSubmit = async (e) => {
     e.preventDefault();
     try{
-      setIsLoading(true);
+      /*setIsLoading(true);
       const response = await axios.get(`${BASE_URL}/cnpj/${cnpj}`)
       if(response.includes("complexo esportivo")){
         setErrorMessage("Este CNPJ já possui um Complexo Esportivo vinculado.")
-      }
+      }*/
       handleNextStep();
     }catch(error){
       console.log(error)

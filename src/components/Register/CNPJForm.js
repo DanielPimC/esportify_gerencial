@@ -12,9 +12,11 @@ const CNPJForm = ({ cnpj, handleChange, handleSubmit, errorMessage }) => (
       onChange={handleChange}
       required
     />
-    <button type="submit" className="btn-login">
-      Avançar
-    </button>
+    <div className="div-btn-register">
+      <button type="submit" className="btn-register">
+        Avançar
+      </button>
+    </div>
     {errorMessage && <p className="error-message">{errorMessage}</p>}
   </form>
 );

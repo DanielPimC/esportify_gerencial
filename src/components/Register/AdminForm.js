@@ -36,12 +36,14 @@ const AdminForm = ({
       required
     />
     {errorMessage && <p className="error-message">{errorMessage}</p>}
-    <button type="submit" className="btn-login">
-      Avançar
-    </button>
-    <button onClick={handlePrevStep} className="btn-login">
-      Voltar
-    </button>
+    <div className="div-btn-register">
+      <button onClick={handlePrevStep} className="btn-register">
+        Voltar
+      </button>
+      <button type="submit" className="btn-register">
+        Avançar
+      </button>
+    </div>
   </form>
 );
 
