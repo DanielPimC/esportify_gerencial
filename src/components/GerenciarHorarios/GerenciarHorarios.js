@@ -50,7 +50,7 @@ function GerenciarHorarios() {
           }),
         ]);
         setDiasSemana(diasResponse.data.dias_da_semana);
-        console.log(horariosResponse)
+        console.log(horariosResponse);
         setHorarios(horariosResponse.data.times);
       } catch (error) {
         if (
@@ -159,7 +159,7 @@ function GerenciarHorarios() {
         { headers: { Authorization: token } }
       );
       setHorarios(response.data.times);
-      console.log(response.data)
+      console.log(response.data);
       toggleDeleteModal(null);
     } catch (error) {
       if (
@@ -209,6 +209,10 @@ function GerenciarHorarios() {
       return null;
     }
 
+    if (!horarios) {
+      return <div className="sem-horarios">Erro ao carregar horários.</div>;
+    }
+
     const horariosDoDia = horarios.filter(
       (horario) => horario.id_dia_semana === diaSelecionado.id
     );
@@ -217,42 +221,40 @@ function GerenciarHorarios() {
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     const currentItems = horariosDoDia.slice(indexOfFirstItem, indexOfLastItem);
 
+    if (currentItems.length === 0) {
+      return <p className="sem-horarios">Sem horários definidos.</p>;
+    }
+
     return (
       <>
         <div className="horarios-list">
-          {currentItems.length > 0 ? (
-            currentItems.map((horario) => (
-              <div key={horario.id} className="horario-card">
-                <div className="horario-info">
-                  <h3>Horário: </h3>
-                  <p>
-                    {horario.horario_inicial.slice(11, 16)} -{" "}
-                    {horario.horario_final.slice(11, 16)}
-                  </p>
-                  <h3>Preço: </h3>
-                  <p>R$ {horario.preco}</p>
-                </div>
-                <div className="horario-actions">
-                  <EditIcon
-                    className="action-icon"
-                    onClick={() => toggleAlterarModal(horario)}
-                  />
-                  <PowerSettingsNewIcon
-                    className="action-icon"
-                    onClick={() => toggleDesativarModal(horario)}
-                  />
-                  <DeleteIcon
-                    className="action-icon"
-                    onClick={() => toggleDeleteModal(horario)}
-                  />
-                </div>
+          {currentItems.map((horario) => (
+            <div key={horario.id} className="horario-card">
+              <div className="horario-info">
+                <h3>Horário: </h3>
+                <p>
+                  {horario.horario_inicial.slice(11, 16)} -{" "}
+                  {horario.horario_final.slice(11, 16)}
+                </p>
+                <h3>Preço: </h3>
+                <p>R$ {horario.preco}</p>
               </div>
-            ))
-          ) : (
-            <div className="sem-horarios">
-              <p>Sem horários definidos.</p>
+              <div className="horario-actions">
+                <EditIcon
+                  className="action-icon"
+                  onClick={() => toggleAlterarModal(horario)}
+                />
+                <PowerSettingsNewIcon
+                  className="action-icon"
+                  onClick={() => toggleDesativarModal(horario)}
+                />
+                <DeleteIcon
+                  className="action-icon"
+                  onClick={() => toggleDeleteModal(horario)}
+                />
+              </div>
             </div>
-          )}
+          ))}
         </div>
         <div className="pagination">
           <button onClick={prevPage} disabled={currentPage === 1}>

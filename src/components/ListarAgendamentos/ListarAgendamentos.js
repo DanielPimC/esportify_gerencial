@@ -18,15 +18,19 @@ function ListarAgendamentos() {
   useEffect(() => {
     const fetchHorarios = async () => {
       try {
-
         const token = localStorage.getItem("token");  
-        const quadra = localStorage.getItem("idQuadra")
+        const quadra = localStorage.getItem("idQuadra");
         const response = await axios.get(`${BASE_URL}quadra/alugueis/${quadra}`, {
           headers: {
             Authorization: token
           }
         });
-        setHorarios(response.data);
+
+        if (response.data && response.data.rentTimes) {
+          setHorarios(response.data.rentTimes);
+        } else {
+          setHorarios([]);
+        }
         console.log(response.data);
       } catch (error) {
         if (
@@ -48,24 +52,36 @@ function ListarAgendamentos() {
     return () => clearInterval(intervalId);
   }, [token]);
 
+  const formatarData = (data) => {
+    const dataObj = new Date(data);
+    const dia = String(dataObj.getDate()).padStart(2, '0');
+    const mes = String(dataObj.getMonth() + 1).padStart(2, '0');
+    const ano = dataObj.getFullYear();
+    return `${dia}/${mes}/${ano}`;
+  };
+
   const renderizarHorarios = () => {
     if (isLoading) {
       return <Loading isLoading={isLoading} />;
     }
 
-    if (horarios.length === 0) {
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentHorarios = horarios.slice(indexOfFirstItem, indexOfLastItem);
+
+    if (currentHorarios.length === 0) {
       return (
-        <p className="sem-horarios-agendados">Não há horários marcados.</p>
+        <p className="sem-solicitacoes">Não há horários agendados.</p>
       );
     }
 
     return (
       <div>
         <ul className="horarios-lista">
-          {horarios.rentTimes.map((horario) => (
-            <li key={1} className="horario-item">
+          {currentHorarios.map((horario) => (
+            <li key={horario.id} className="horario-item">
               <p>Cliente: {horario.usuario.nome}</p>
-              <p>Dia: {horario.data}</p>
+              <p>Dia: {formatarData(horario.data)}</p>
               <p>
                 Horário: De {horario.horario_aluguel.horario_inicial} às {horario.horario_aluguel.horario_final}
               </p>
@@ -88,6 +104,14 @@ function ListarAgendamentos() {
     <div className="listar-agendamentos">
       <MenuLateral />
       {renderizarHorarios()}
+      <div className="pagination">
+        <button onClick={prevPage} disabled={currentPage === 1}>
+          Página anterior
+        </button>
+        <button onClick={nextPage} disabled={currentPage * itemsPerPage >= horarios.length}>
+          Próxima página
+        </button>
+      </div>
     </div>
   );
 }

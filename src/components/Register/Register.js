@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import axios from "axios";
+//import axios from "axios";
 import Loading from "../Loading/Loading";
 import ProgressBar from "./ProgressBar/ProgressBar";
 import CNPJForm from "./CNPJForm";
 import AdminForm from "./AdminForm";
 import CourtLocationForm from "./LocationForm";
 import Completion from "./Completion";
-import { BASE_URL } from "../../services/api-connection";
+//import { BASE_URL } from "../../services/api-connection";
 import ImageStep01 from "../../assets/images/step1.png";
 import ImageStep02 from "../../assets/images/step2.png";
 import ImageStep03 from "../../assets/images/step3.png";
@@ -146,3 +146,40 @@ const Register = () => {
 };
 
 export default Register;
+
+/*
+useEffect(() => {
+    const fetchHorarios = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const quadra = localStorage.getItem("idQuadra");
+        const response = await axios.get(
+          `${BASE_URL}quadra/alugueis/${quadra}`,
+          {
+            headers: {
+              Authorization: token,
+            },
+          }
+        );
+        setHorarios(response.data);
+        console.log(response.data);
+      } catch (error) {
+        if (
+          error.response &&
+          (error.response.data.error === "Token expired" ||
+            error.response.data.error === "jwt malformed")
+        ) {
+          localStorage.removeItem("token");
+        }
+        console.error("Erro ao buscar horários:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchHorarios();
+
+    const intervalId = setInterval(fetchHorarios, 10000);
+    return () => clearInterval(intervalId);
+  }, [token]);
+  */
