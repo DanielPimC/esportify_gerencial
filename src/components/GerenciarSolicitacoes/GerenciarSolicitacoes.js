@@ -7,6 +7,7 @@ import MenuLateral from "../MenuLateral/MenuLateral";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CancelIcon from "@mui/icons-material/Cancel";
 import HourglassEmptyIcon from "@mui/icons-material/HourglassEmpty";
+import { socket } from "../../services/socket";
 
 function GerenciarSolicitacoes() {
   const navigate = useNavigate();
@@ -16,6 +17,17 @@ function GerenciarSolicitacoes() {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(6);
   const token = localStorage.getItem("token");
+  const [socketInstance] = useState(socket())
+
+  useEffect(() => {
+    socketInstance.on('rent', () => {
+      console.log('teste')
+    })
+
+    return () => {
+      socketInstance.off('rent')
+    }
+  }, [])
 
   useEffect(() => {
     /*if (!token) {

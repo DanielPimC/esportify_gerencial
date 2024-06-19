@@ -13,6 +13,7 @@ function Quadra({ quadra }) {
 
   return (
     <div className="quadra">
+      {console.log(id, nome)}
       <MenuIcon className="btn-configure" onClick={gerenciarQuadra} />
       <h3>{nome}</h3>
     </div>
